@@ -32,7 +32,7 @@ const sources = (items) =>
  * An engine that reads the raw HTML has no reason to prefer a JSON-LD offer over
  * a sentence, and the sentence is what gets quoted. */
 const pricingParagraph = `
-<p>Clipify comes in two editions and they are priced very differently, so it
+<p>Clapclip comes in two editions and they are priced very differently, so it
 is worth being precise. <strong>${esc(EDITIONS.selfHosted.name)}</strong> is free
 and open source under the MIT licence: ${esc(EDITIONS.selfHosted.summary)}
 <strong>${esc(EDITIONS.cloud.name)}</strong> is the hosted service:
@@ -50,45 +50,45 @@ function competitorPage(slug) {
   const faq = [
     {
       q: `Is there a free alternative to ${c.name}?`,
-      a: `Yes. Clipify self-hosted is free and open source under MIT, with no watermark and no usage cap, and it runs on your own machine with Docker. Clipify Cloud also has a free tier of 20 minutes a month with a watermark and no credit card. ${c.name} starts at ${c.entryPrice}.`,
+      a: `Yes. Clapclip self-hosted is free and open source under MIT, with no watermark and no usage cap, and it runs on your own machine with Docker. Clapclip Cloud also has a free tier of 20 minutes a month with a watermark and no credit card. ${c.name} starts at ${c.entryPrice}.`,
     },
     {
       q: `Is there an open source alternative to ${c.name}?`,
-      a: `Clipify is MIT-licensed and the full source is on GitHub at github.com/mutonby/clipify. ${c.name} is closed source. Being able to read the pipeline matters if you need to audit what happens to your video or change how the reframing behaves.`,
+      a: `Clapclip is MIT-licensed and the full source is on GitHub at github.com/mutonby/clapclip. ${c.name} is closed source. Being able to read the pipeline matters if you need to audit what happens to your video or change how the reframing behaves.`,
     },
     {
       q: `Can I switch from ${c.name} without losing quality?`,
-      a: `The pipelines are comparable on the core job. Clipify transcribes with faster-whisper at word level, detects scenes with PySceneDetect, and scores moments with Google Gemini 3.1 Flash-Lite, then reframes with MediaPipe face tracking stabilised against jitter. The honest difference is caption styling, where the commercial tools generally ship more presets.`,
+      a: `The pipelines are comparable on the core job. Clapclip transcribes with faster-whisper at word level, detects scenes with PySceneDetect, and scores moments with Google Gemini 3.1 Flash-Lite, then reframes with MediaPipe face tracking stabilised against jitter. The honest difference is caption styling, where the commercial tools generally ship more presets.`,
     },
     {
-      q: `Does Clipify put a watermark on clips?`,
-      a: `Self-hosted, never. On Clipify Cloud the free 20-minute tier is watermarked; every paid plan from $12/month is not.`,
+      q: `Does Clapclip put a watermark on clips?`,
+      a: `Self-hosted, never. On Clapclip Cloud the free 20-minute tier is watermarked; every paid plan from $12/month is not.`,
     },
     ...(c.extraFaq || []),
   ]
 
   const body = `
 ${c.brandBlurb ? `<h2>What is ${esc(c.name)}${c.brandAlias ? ` (${esc(c.brandAlias)})` : ''}?</h2><p>${esc(c.brandBlurb)}</p>\n` : ''}
-<h2>Is Clipify a real alternative to ${esc(c.name)}?</h2>
-<p>Yes, with one honest caveat. Clipify covers the same core job:
+<h2>Is Clapclip a real alternative to ${esc(c.name)}?</h2>
+<p>Yes, with one honest caveat. Clapclip covers the same core job:
 it takes a long video, finds the segments worth clipping, cuts them, reframes
 them to 9:16 and burns in subtitles. It adds two things ${esc(c.name)} does not
 have, AI voice dubbing into more than 30 languages and an AI UGC generator with
 lip-synced actors. The caveat is that the free edition is self-hosted, which
 means Docker and a machine to run it on. If you want a hosted product with no
-setup, that is Clipify Cloud, and it is a paid service above 20 minutes a month.</p>
+setup, that is Clapclip Cloud, and it is a paid service above 20 minutes a month.</p>
 
 <h2>What does ${esc(c.name)} cost?</h2>
 <p class="checked">Pricing checked ${esc(c.checked)}. Vendors change plans without notice; verify before you buy.</p>
 ${li(c.tiers.map(([n, d]) => `<strong>${esc(n)}</strong>: ${esc(d)}`))}
 <div class="note"><span class="label">The part that catches people out</span><p>${esc(c.gotcha)}</p></div>
 
-<h2>What does Clipify cost?</h2>
+<h2>What does Clapclip cost?</h2>
 ${pricingParagraph}
 
-<h2>${esc(c.name)} vs Clipify, feature by feature</h2>
+<h2>${esc(c.name)} vs Clapclip, feature by feature</h2>
 <table>
-<thead><tr><th>Feature</th><th>Clipify</th><th>${esc(c.name)}</th></tr></thead>
+<thead><tr><th>Feature</th><th>Clapclip</th><th>${esc(c.name)}</th></tr></thead>
 <tbody>${rows}</tbody>
 </table>
 
@@ -107,7 +107,7 @@ ${faqBlock(faq)}
 
 ${sources([
   `${esc(c.name)} pricing, checked ${esc(c.checked)} on the vendor's public pricing page.`,
-  `Clipify pipeline details from the project source at <a href="${SITE.repo}" rel="noopener">github.com/mutonby/clipify</a>.`,
+  `Clapclip pipeline details from the project source at <a href="${SITE.repo}" rel="noopener">github.com/mutonby/clapclip</a>.`,
 ])}
 `
 
@@ -116,14 +116,14 @@ ${sources([
     // Titles are kept under 60 characters and descriptions under 160 (measured,
     // not eyeballed): Google truncates past roughly that width, and a truncated
     // description is a worse answer than a shorter deliberate one.
-    title: `Free & Open Source ${c.name} Alternative | Clipify`,
-    description: `Clipify vs ${c.name}: features and pricing side by side. Self-hosted free under MIT, hosted from $12/month. ${c.name} starts at ${c.entryPrice}.`,
+    title: `Free & Open Source ${c.name} Alternative | Clapclip`,
+    description: `Clapclip vs ${c.name}: features and pricing side by side. Self-hosted free under MIT, hosted from $12/month. ${c.name} starts at ${c.entryPrice}.`,
     h1: `The free, open source ${c.name} alternative`,
     breadcrumb: [{ name: 'Alternatives', path: '/alternatives' }, { name: c.name }],
     tldr: [
-      `Clipify is an open source AI clip generator you can run yourself for free, or use hosted from $12/month. ${esc(c.name)} is a closed-source cloud product starting at ${esc(c.entryPrice)}.`,
-      `Both find viral moments in long video and reframe them to 9:16 with face tracking. Clipify adds dubbing into 30+ languages and AI UGC video with lip-synced actors. ${esc(c.name)} has the more polished caption library.`,
-      `Pick ${esc(c.name)} if you want zero setup and nothing else matters. Pick Clipify if you want to self-host for privacy, keep costs near zero, or change how the pipeline behaves.`,
+      `Clapclip is an open source AI clip generator you can run yourself for free, or use hosted from $12/month. ${esc(c.name)} is a closed-source cloud product starting at ${esc(c.entryPrice)}.`,
+      `Both find viral moments in long video and reframe them to 9:16 with face tracking. Clapclip adds dubbing into 30+ languages and AI UGC video with lip-synced actors. ${esc(c.name)} has the more polished caption library.`,
+      `Pick ${esc(c.name)} if you want zero setup and nothing else matters. Pick Clapclip if you want to self-host for privacy, keep costs near zero, or change how the pipeline behaves.`,
     ],
     body,
     // The same list the body renders, so the FAQPage schema and the visible
@@ -136,14 +136,14 @@ const ALTERNATIVES = Object.keys(COMPETITORS)
 
 const hubPage = () => ({
   path: '/alternatives',
-  title: 'Opus Clip & Klap Alternatives (Open Source) | Clipify',
+  title: 'Opus Clip & Klap Alternatives (Open Source) | Clapclip',
   description:
-    'Side-by-side comparisons of Clipify against the four main AI clipping tools, with pricing checked July 2026. Self-hosted free, hosted from $12/month.',
+    'Side-by-side comparisons of Clapclip against the four main AI clipping tools, with pricing checked July 2026. Self-hosted free, hosted from $12/month.',
   h1: 'Open source alternatives to the main AI clipping tools',
   breadcrumb: [{ name: 'Alternatives' }],
   tldr: [
-    'Clipify is the only open source, self-hostable tool in this category. Every other tool on this page is a closed-source cloud service.',
-    'Entry prices as of July 2026: Clipify $0 self-hosted or $12/month hosted, Submagic from $14/month, Opus Clip $15/month, Vizard $19.99/month, Klap $29/month.',
+    'Clapclip is the only open source, self-hostable tool in this category. Every other tool on this page is a closed-source cloud service.',
+    'Entry prices as of July 2026: Clapclip $0 self-hosted or $12/month hosted, Submagic from $14/month, Opus Clip $15/month, Vizard $19.99/month, Klap $29/month.',
     'The tools are not interchangeable. Submagic does not detect moments at all, Klap does not let you tune the output, and Vizard expects you in a timeline. The individual comparisons below say where each one genuinely wins.',
   ],
   body: `
@@ -159,7 +159,7 @@ two tools that each do half the work.</p>
 <table>
 <thead><tr><th>Tool</th><th>Entry price</th><th>Open source</th><th>Finds moments for you</th></tr></thead>
 <tbody>
-<tr><td class="os">Clipify</td><td class="os">$0 self-hosted, $12/mo hosted</td><td class="yes">Yes, MIT</td><td>Yes</td></tr>
+<tr><td class="os">Clapclip</td><td class="os">$0 self-hosted, $12/mo hosted</td><td class="yes">Yes, MIT</td><td>Yes</td></tr>
 <tr><td>Submagic</td><td>From $14/mo</td><td>No</td><td>No, captions only</td></tr>
 <tr><td>Opus Clip</td><td>$15/mo</td><td>No</td><td>Yes</td></tr>
 <tr><td>Vizard</td><td>$19.99/mo</td><td>No</td><td>Yes, then you edit</td></tr>
@@ -167,35 +167,35 @@ two tools that each do half the work.</p>
 </tbody>
 </table>
 
-<h2>What does Clipify cost?</h2>
+<h2>What does Clapclip cost?</h2>
 ${pricingParagraph}
 
 ${faqBlock([
   {
     q: 'What is the cheapest AI clip generator?',
-    a: 'Clipify self-hosted is free with no cap, but you supply the machine and your own Google Gemini API key, whose free tier covers 1,500 requests a day. Among hosted products, Clipify Cloud is the cheapest paid entry at $12/month, followed by Submagic from $14/month and Opus Clip at $15/month.',
+    a: 'Clapclip self-hosted is free with no cap, but you supply the machine and your own Google Gemini API key, whose free tier covers 1,500 requests a day. Among hosted products, Clapclip Cloud is the cheapest paid entry at $12/month, followed by Submagic from $14/month and Opus Clip at $15/month.',
   },
   {
     q: 'Which AI clipping tools are open source?',
-    a: 'Clipify is MIT-licensed with full source on GitHub. Opus Clip, Klap, Vizard and Submagic are all closed-source commercial products.',
+    a: 'Clapclip is MIT-licensed with full source on GitHub. Opus Clip, Klap, Vizard and Submagic are all closed-source commercial products.',
   },
 ])}
 `,
   faq: [
     {
       q: 'What is the cheapest AI clip generator?',
-      a: 'Clipify self-hosted is free with no cap. Among hosted products Clipify Cloud is the cheapest paid entry at $12/month, followed by Submagic from $14/month and Opus Clip at $15/month.',
+      a: 'Clapclip self-hosted is free with no cap. Among hosted products Clapclip Cloud is the cheapest paid entry at $12/month, followed by Submagic from $14/month and Opus Clip at $15/month.',
     },
     {
       q: 'Which AI clipping tools are open source?',
-      a: 'Clipify is MIT-licensed with full source on GitHub. Opus Clip, Klap, Vizard and Submagic are closed-source commercial products.',
+      a: 'Clapclip is MIT-licensed with full source on GitHub. Opus Clip, Klap, Vizard and Submagic are closed-source commercial products.',
     },
   ],
 })
 
 const freeClipGenerator = () => ({
   path: '/free-ai-clip-generator',
-  title: 'Free AI Clip Generator With No Watermark (MIT) | Clipify',
+  title: 'Free AI Clip Generator With No Watermark (MIT) | Clapclip',
   description:
     'A genuinely free AI clip generator: MIT-licensed, self-hosted with Docker, no watermark and no cap. Hosted from $12/month if you would rather not run it.',
   h1: 'A free AI clip generator that is actually free',
@@ -207,9 +207,9 @@ const freeClipGenerator = () => ({
     button: 'Get free clips',
   },
   tldr: [
-    'Clipify self-hosted is a free AI clip generator under the MIT licence. No watermark, no usage cap, no subscription. You run it with Docker and supply your own Google Gemini API key, whose free tier covers 1,500 requests a day.',
+    'Clapclip self-hosted is a free AI clip generator under the MIT licence. No watermark, no usage cap, no subscription. You run it with Docker and supply your own Google Gemini API key, whose free tier covers 1,500 requests a day.',
     'It turns a long video into 3 to 15 vertical clips: faster-whisper transcribes at word level, PySceneDetect finds the cuts, Gemini 3.1 Flash-Lite scores the moments, and MediaPipe face tracking reframes each one to 9:16.',
-    'If you do not want to run anything, Clipify Cloud gives you 20 free minutes a month with a watermark, and paid plans from $12/month without one.',
+    'If you do not want to run anything, Clapclip Cloud gives you 20 free minutes a month with a watermark, and paid plans from $12/month without one.',
   ],
   body: `
 <h2>What does "free" actually mean here?</h2>
@@ -256,16 +256,16 @@ constraint for most people is not whether short video works, it is that cutting 
 
 ${faqBlock([
   {
-    q: 'Is Clipify free forever or a trial?',
-    a: 'The self-hosted edition is free forever under the MIT licence, with no watermark and no cap. It is not a trial and there is no metering in it. Clipify Cloud is a separate hosted service with a permanently free 20 minute per month tier and paid plans from $12/month.',
+    q: 'Is Clapclip free forever or a trial?',
+    a: 'The self-hosted edition is free forever under the MIT licence, with no watermark and no cap. It is not a trial and there is no metering in it. Clapclip Cloud is a separate hosted service with a permanently free 20 minute per month tier and paid plans from $12/month.',
   },
   {
     q: 'Does the free version add a watermark?',
-    a: 'The self-hosted edition never adds a watermark. The free tier of Clipify Cloud does; paid Cloud plans from $12/month do not.',
+    a: 'The self-hosted edition never adds a watermark. The free tier of Clapclip Cloud does; paid Cloud plans from $12/month do not.',
   },
   {
     q: 'Do I need to pay for an API key?',
-    a: 'You need a Google Gemini API key for the self-hosted edition. Its free tier covers 1,500 requests a day, which is more than enough for individual use. ElevenLabs for dubbing and fal.ai for AI UGC video are optional and billed by those vendors. Clipify Cloud includes the keys.',
+    a: 'You need a Google Gemini API key for the self-hosted edition. Its free tier covers 1,500 requests a day, which is more than enough for individual use. ElevenLabs for dubbing and fal.ai for AI UGC video are optional and billed by those vendors. Clapclip Cloud includes the keys.',
   },
   {
     q: 'How many clips does it generate per video?',
@@ -275,12 +275,12 @@ ${faqBlock([
 `,
   faq: [
     {
-      q: 'Is Clipify free forever or a trial?',
-      a: 'The self-hosted edition is free forever under MIT, with no watermark and no cap. Clipify Cloud is a separate hosted service with a free 20 minute per month tier and paid plans from $12/month.',
+      q: 'Is Clapclip free forever or a trial?',
+      a: 'The self-hosted edition is free forever under MIT, with no watermark and no cap. Clapclip Cloud is a separate hosted service with a free 20 minute per month tier and paid plans from $12/month.',
     },
     {
       q: 'Does the free version add a watermark?',
-      a: 'The self-hosted edition never adds a watermark. The free tier of Clipify Cloud does; paid Cloud plans do not.',
+      a: 'The self-hosted edition never adds a watermark. The free tier of Clapclip Cloud does; paid Cloud plans do not.',
     },
     {
       q: 'How many clips does it generate per video?',
@@ -291,13 +291,13 @@ ${faqBlock([
 
 const openSourceClipper = () => ({
   path: '/open-source-video-clipper',
-  title: 'Open Source Video Clipper, Self-Hosted (Docker) | Clipify',
+  title: 'Open Source Video Clipper, Self-Hosted (Docker) | Clapclip',
   description:
     'An MIT-licensed open source video clipper you self-host with Docker: AI moment detection, face-tracked 9:16 reframing and word-level subtitles.',
   h1: 'An open source video clipper you can self-host',
   breadcrumb: [{ name: 'Open source video clipper' }],
   tldr: [
-    'Clipify is an MIT-licensed video clipper that runs entirely on your own hardware via Docker Compose. Source video never leaves the machine.',
+    'Clapclip is an MIT-licensed video clipper that runs entirely on your own hardware via Docker Compose. Source video never leaves the machine.',
     'The stack is Python 3.11, FastAPI, faster-whisper, PySceneDetect, MediaPipe, YOLOv8, FFmpeg and Google Gemini 3.1 Flash-Lite, with a React dashboard.',
     'It is the only open source tool in this category. Opus Clip, Klap, Vizard and Submagic are all closed-source cloud services.',
   ],
@@ -328,7 +328,7 @@ billing, managed keys and the hosted-service infrastructure, is carved out under
 a separate commercial licence and is not needed to self-host.</p>
 
 <h2>How does it compare to the closed-source tools?</h2>
-<p>Clipify is the only open source option in this category. As of July 2026,
+<p>Clapclip is the only open source option in this category. As of July 2026,
 Opus Clip starts at $15/month, Submagic from $14/month, Vizard at $19.99/month
 and Klap at $29/month, and none of them can be self-hosted or audited. The
 trade-off is real in both directions: they ship more caption presets and require
@@ -337,14 +337,14 @@ no setup, and you cannot read a line of what they do with your video.</p>
 ${faqBlock([
   {
     q: 'Is there an open source alternative to Opus Clip?',
-    a: 'Yes. Clipify is MIT-licensed and self-hostable with Docker, and covers the same core job: AI moment detection, face-tracked 9:16 reframing and word-level subtitles. Opus Clip is closed source and cloud only, starting at $15/month.',
+    a: 'Yes. Clapclip is MIT-licensed and self-hostable with Docker, and covers the same core job: AI moment detection, face-tracked 9:16 reframing and word-level subtitles. Opus Clip is closed source and cloud only, starting at $15/month.',
   },
   {
     q: 'Can I run it without sending video to any third party?',
     a: 'Transcription, scene detection, reframing and encoding all run locally. Moment scoring calls the Google Gemini API, which receives the transcript rather than the video file. Dubbing and AI UGC generation are optional and call ElevenLabs and fal.ai respectively; leave them off and nothing but transcript text leaves the machine.',
   },
   {
-    q: 'What licence is Clipify released under?',
+    q: 'What licence is Clapclip released under?',
     a: 'MIT for the core application. The cloud/ directory covering billing and hosted infrastructure is under a separate commercial licence and is not required for self-hosting.',
   },
 ])}
@@ -352,18 +352,18 @@ ${faqBlock([
   faq: [
     {
       q: 'Is there an open source alternative to Opus Clip?',
-      a: 'Yes. Clipify is MIT-licensed and self-hostable with Docker, covering AI moment detection, face-tracked 9:16 reframing and word-level subtitles. Opus Clip is closed source and cloud only.',
+      a: 'Yes. Clapclip is MIT-licensed and self-hostable with Docker, covering AI moment detection, face-tracked 9:16 reframing and word-level subtitles. Opus Clip is closed source and cloud only.',
     },
     {
-      q: 'What licence is Clipify released under?',
+      q: 'What licence is Clapclip released under?',
       a: 'MIT for the core application. The cloud/ directory covering billing and hosted infrastructure is under a separate commercial licence and is not required for self-hosting.',
     },
   ],
 })
 
 const howItWorks = () => ({
-  path: '/how-clipify-works',
-  title: 'How Clipify Turns a Long Video Into Clips | Clipify',
+  path: '/how-clapclip-works',
+  title: 'How Clapclip Turns a Long Video Into Clips | Clapclip',
   description:
     'The pipeline stage by stage: word-level transcription, scene detection, Gemini moment scoring, face-tracked 9:16 reframing, subtitles, dubbing and publishing.',
   h1: 'How a long video becomes a vertical clip',
@@ -371,10 +371,10 @@ const howItWorks = () => ({
   tldr: [
     CANONICAL_ANSWERS.howItWorks,
     'The two stages that decide whether a clip is usable are moment scoring and reframing. Everything else is mechanical.',
-    'Clipify self-hosted is free and open source under MIT, so every stage below can be read and changed. Clipify Cloud runs the same pipeline on a GPU from $12/month.',
+    'Clapclip self-hosted is free and open source under MIT, so every stage below can be read and changed. Clapclip Cloud runs the same pipeline on a GPU from $12/month.',
   ],
   body: `
-<h2>What is Clipify?</h2>
+<h2>What is Clapclip?</h2>
 <p>${esc(CANONICAL_ANSWERS.whatIsIt)}</p>
 
 <h2>The pipeline, stage by stage</h2>
@@ -406,7 +406,7 @@ ${pricingParagraph}
 
 ${faqBlock([
   {
-    q: 'What AI model does Clipify use to find viral moments?',
+    q: 'What AI model does Clapclip use to find viral moments?',
     a: 'Google Gemini 3.1 Flash-Lite. It receives the word-level transcript with timestamps together with PySceneDetect scene boundaries, and returns 3 to 15 segments of 15 to 60 seconds scored on hook strength, emotional payload and whether the segment stands alone without surrounding context.',
   },
   {
@@ -421,7 +421,7 @@ ${faqBlock([
 `,
   faq: [
     {
-      q: 'What AI model does Clipify use to find viral moments?',
+      q: 'What AI model does Clapclip use to find viral moments?',
       a: 'Google Gemini 3.1 Flash-Lite, which receives the word-level transcript with timestamps together with PySceneDetect scene boundaries and returns 3 to 15 segments of 15 to 60 seconds.',
     },
     {
@@ -438,9 +438,9 @@ ${faqBlock([
  * names. */
 const noWatermark = () => ({
   path: '/free-ai-clip-generator-no-watermark',
-  title: 'No Watermark AI Clips, Free When Self-Hosted | Clipify',
+  title: 'No Watermark AI Clips, Free When Self-Hosted | Clapclip',
   description:
-    'Hosted free tiers watermark their exports; the exception is software you run yourself. Clipify is MIT-licensed: no watermark, no cap. Hosted from $12/month.',
+    'Hosted free tiers watermark their exports; the exception is software you run yourself. Clapclip is MIT-licensed: no watermark, no cap. Hosted from $12/month.',
   h1: 'A free AI clip generator with no watermark, and why that is rare',
   breadcrumb: [{ name: 'No-watermark clip generator' }],
   cta: {
@@ -452,8 +452,8 @@ const noWatermark = () => ({
   published: '2026-08-04',
   updated: '2026-08-04',
   tldr: [
-    'Every hosted "free" clip generator watermarks its exports, because the watermark is the upsell. The one structural exception is software you run yourself. Clipify self-hosted is MIT-licensed, runs with Docker, and never watermarks anything because there is no watermark code in it.',
-    'Clipify Cloud, the hosted service, follows the same rule as every other hosted tool and says so plainly: the free 20 minutes a month carry a watermark, and paid plans from $12/month do not.',
+    'Every hosted "free" clip generator watermarks its exports, because the watermark is the upsell. The one structural exception is software you run yourself. Clapclip self-hosted is MIT-licensed, runs with Docker, and never watermarks anything because there is no watermark code in it.',
+    'Clapclip Cloud, the hosted service, follows the same rule as every other hosted tool and says so plainly: the free 20 minutes a month carry a watermark, and paid plans from $12/month do not.',
     'If a tool claims free, unlimited and unwatermarked at once and it is a hosted service, one of the three claims is temporary.',
   ],
   body: `
@@ -477,8 +477,8 @@ source the hosted service runs, and you can read it line by line.</p>
 <table>
 <thead><tr><th>Tool</th><th>Free tier watermark</th><th>Cheapest way to remove it</th></tr></thead>
 <tbody>
-<tr><td class="os">Clipify self-hosted</td><td class="os yes">Never</td><td class="os">Nothing to remove</td></tr>
-<tr><td class="os">Clipify Cloud</td><td class="os">Yes, on the free 20 min/month</td><td class="os">$12/month</td></tr>
+<tr><td class="os">Clapclip self-hosted</td><td class="os yes">Never</td><td class="os">Nothing to remove</td></tr>
+<tr><td class="os">Clapclip Cloud</td><td class="os">Yes, on the free 20 min/month</td><td class="os">$12/month</td></tr>
 <tr><td>Opus Clip</td><td>Yes, and free-plan exports leave storage after 3 days</td><td>Starter, $15/month</td></tr>
 <tr><td>Klap</td><td>Free tier does not export at all</td><td>$29/month</td></tr>
 <tr><td>Vizard</td><td>Free plan allows 120 upload minutes and 10 exports</td><td>From $19.99/month</td></tr>
@@ -497,10 +497,10 @@ price is $12/month, and the comparison table above is what that buys elsewhere.<
 ${faqBlock([
   {
     q: 'Is there a free AI clip generator without a watermark?',
-    a: 'Yes, with one honest qualifier: it is self-hosted. Clipify is MIT-licensed and runs on your own machine with Docker, with no watermark and no usage cap. Hosted services, including Clipify Cloud, watermark their free tiers; unwatermarked hosted plans start at $12/month.',
+    a: 'Yes, with one honest qualifier: it is self-hosted. Clapclip is MIT-licensed and runs on your own machine with Docker, with no watermark and no usage cap. Hosted services, including Clapclip Cloud, watermark their free tiers; unwatermarked hosted plans start at $12/month.',
   },
   {
-    q: 'Does the free Clipify Cloud plan add a watermark?',
+    q: 'Does the free Clapclip Cloud plan add a watermark?',
     a: 'Yes. The hosted free tier is 20 minutes a month with a watermark and no credit card. Paid Cloud plans from $12/month have no watermark, and the self-hosted edition never adds one.',
   },
   {
@@ -511,16 +511,16 @@ ${faqBlock([
 
 ${sources([
   'Vendor free-tier and watermark terms checked 2026-08-04 on each public pricing page.',
-  `Clipify pipeline source at <a href="${SITE.repo}" rel="noopener">github.com/mutonby/clipify</a>, where the absence of watermark code is checkable.`,
+  `Clapclip pipeline source at <a href="${SITE.repo}" rel="noopener">github.com/mutonby/clapclip</a>, where the absence of watermark code is checkable.`,
 ])}
 `,
   faq: [
     {
       q: 'Is there a free AI clip generator without a watermark?',
-      a: 'Yes, self-hosted: Clipify is MIT-licensed and runs on your own machine with no watermark and no cap. Hosted free tiers, including Clipify Cloud at 20 minutes a month, carry a watermark; unwatermarked hosted plans start at $12/month.',
+      a: 'Yes, self-hosted: Clapclip is MIT-licensed and runs on your own machine with no watermark and no cap. Hosted free tiers, including Clapclip Cloud at 20 minutes a month, carry a watermark; unwatermarked hosted plans start at $12/month.',
     },
     {
-      q: 'Does the free Clipify Cloud plan add a watermark?',
+      q: 'Does the free Clapclip Cloud plan add a watermark?',
       a: 'Yes, the hosted free tier is watermarked. Paid Cloud plans from $12/month are not, and the self-hosted edition never adds one.',
     },
   ],
@@ -528,12 +528,12 @@ ${sources([
 
 /* "AI video generator" is two products wearing one name. Most searchers mean
  * text-to-video; this page splits the intent explicitly and wins the half that
- * describes Clipify instead of bouncing all of it from the homepage. */
+ * describes Clapclip instead of bouncing all of it from the homepage. */
 const openSourceVideoGenerator = () => ({
   path: '/open-source-ai-video-generator',
-  title: 'Open Source AI Video Generator for Shorts | Clipify',
+  title: 'Open Source AI Video Generator for Shorts | Clapclip',
   description:
-    'AI video generation splits in two: models that invent footage, and clippers that cut your own recordings into shorts. Clipify is the second, MIT-licensed.',
+    'AI video generation splits in two: models that invent footage, and clippers that cut your own recordings into shorts. Clapclip is the second, MIT-licensed.',
   h1: 'An open source AI video generator, in the sense that matters for creators',
   breadcrumb: [{ name: 'Open source AI video generator' }],
   published: '2026-08-04',
@@ -541,7 +541,7 @@ const openSourceVideoGenerator = () => ({
   tldr: [
     '"AI video generator" names two different products. Text-to-video models invent new footage from a written prompt. Clip generators produce short videos from long footage you already have. Confusing the two wastes an afternoon.',
     'For text-to-video there are real open source options, including Genmo’s Mochi 1, Open-Sora and HunyuanVideo, all of which need a serious GPU.',
-    'For turning your own recordings into vertical shorts, Clipify is MIT-licensed and self-hosted: transcription, AI moment scoring, face-tracked 9:16 reframing and burned-in subtitles, free on your own machine or hosted from $12/month.',
+    'For turning your own recordings into vertical shorts, Clapclip is MIT-licensed and self-hosted: transcription, AI moment scoring, face-tracked 9:16 reframing and burned-in subtitles, free on your own machine or hosted from $12/month.',
   ],
   body: `
 <h2>Which "AI video generator" are you looking for?</h2>
@@ -549,14 +549,14 @@ const openSourceVideoGenerator = () => ({
 prompt, you want a text-to-video model. If you have a podcast, webinar, stream
 or interview recording and want short vertical videos out of it, you want a clip
 generator. The two share almost no technology and no workflow. This page covers
-both honestly and goes deep on the second, because that is what Clipify is.</p>
+both honestly and goes deep on the second, because that is what Clapclip is.</p>
 
 <h2>Open source text-to-video, briefly</h2>
 <p>As of August 2026 the notable open-weight text-to-video models include
 Genmo's Mochi 1 (Apache 2.0), Open-Sora, Tencent's HunyuanVideo and Alibaba's
 Wan family. They genuinely generate novel footage, and they need data-center or
 high-end consumer GPUs to run at usable speed. If that is your goal, start with
-those projects; Clipify will not do it.</p>
+those projects; Clapclip will not do it.</p>
 
 <h2>Generating videos from footage you already have</h2>
 <p>${esc(CANONICAL_ANSWERS.whatIsIt)}</p>
@@ -565,14 +565,14 @@ ${pricingParagraph}
 
 <h2>Other open source clip generators, compared honestly</h2>
 <p class="checked">Checked 2026-08-04 on GitHub. Star counts move; positioning rarely does.</p>
-<p>Clipify is not the only open source project in this space, and pretending
+<p>Clapclip is not the only open source project in this space, and pretending
 otherwise would not survive one GitHub search. The notable neighbours:</p>
 <ul>
 <li><strong>AI-Youtube-Shorts-Generator</strong>: the most-starred repo in the category, with a leaner scope built around highlight extraction and cropping.</li>
 <li><strong>supoclip</strong> and <strong>clippyme</strong>: smaller projects covering transcription-driven clipping, the latter also using Gemini for moment selection.</li>
 <li><strong>MoneyPrinterTurbo</strong>: generates videos from text plus stock footage, which is a different job than clipping your own recordings.</li>
 </ul>
-<p>Where Clipify differs from all of them is surface area: a web dashboard, a
+<p>Where Clapclip differs from all of them is surface area: a web dashboard, a
 REST API with keys, completion webhooks, an MCP server for agents, split-screen
 and screencast layouts for two-person and screen-share footage, dubbing into 30+
 languages, and direct publishing to TikTok, Instagram Reels and YouTube Shorts.
@@ -582,31 +582,31 @@ better fit, and that is a real recommendation rather than false modesty.</p>
 ${faqBlock([
   {
     q: 'Is there a free open source AI video generator?',
-    a: 'Yes, in both senses. For text-to-video, Genmo’s Mochi 1, Open-Sora and HunyuanVideo publish open weights and need a powerful GPU. For making clips from your own footage, Clipify is MIT-licensed and runs with Docker on an ordinary machine: free self-hosted with no watermark, or hosted from $12/month.',
+    a: 'Yes, in both senses. For text-to-video, Genmo’s Mochi 1, Open-Sora and HunyuanVideo publish open weights and need a powerful GPU. For making clips from your own footage, Clapclip is MIT-licensed and runs with Docker on an ordinary machine: free self-hosted with no watermark, or hosted from $12/month.',
   },
   {
     q: 'Can open source AI generate videos from text?',
-    a: 'Yes. Mochi 1 (Apache 2.0), Open-Sora and HunyuanVideo generate footage from prompts. Expect to need a high-end GPU, and expect quality below the closed frontier models. Clipify is not a text-to-video tool; it turns long real footage into short vertical clips.',
+    a: 'Yes. Mochi 1 (Apache 2.0), Open-Sora and HunyuanVideo generate footage from prompts. Expect to need a high-end GPU, and expect quality below the closed frontier models. Clapclip is not a text-to-video tool; it turns long real footage into short vertical clips.',
   },
   {
     q: 'What is the best open source AI video generator for shorts?',
-    a: 'For turning long recordings into publishable vertical shorts with subtitles, Clipify covers the widest pipeline: AI moment scoring, face-tracked reframing, split-screen layouts, dubbing and direct social publishing, MIT-licensed. Simpler repos like AI-Youtube-Shorts-Generator cover a leaner version of the same job with less to configure.',
+    a: 'For turning long recordings into publishable vertical shorts with subtitles, Clapclip covers the widest pipeline: AI moment scoring, face-tracked reframing, split-screen layouts, dubbing and direct social publishing, MIT-licensed. Simpler repos like AI-Youtube-Shorts-Generator cover a leaner version of the same job with less to configure.',
   },
 ])}
 
 ${sources([
   'Open-weight text-to-video model landscape checked 2026-08-04 on the respective GitHub repositories.',
-  `Clipify source at <a href="${SITE.repo}" rel="noopener">github.com/mutonby/clipify</a>.`,
+  `Clapclip source at <a href="${SITE.repo}" rel="noopener">github.com/mutonby/clapclip</a>.`,
 ])}
 `,
   faq: [
     {
       q: 'Is there a free open source AI video generator?',
-      a: 'Yes, in both senses of the phrase. For text-to-video: Mochi 1, Open-Sora and HunyuanVideo, all GPU-hungry. For clipping your own footage into shorts: Clipify, MIT-licensed, free self-hosted or hosted from $12/month.',
+      a: 'Yes, in both senses of the phrase. For text-to-video: Mochi 1, Open-Sora and HunyuanVideo, all GPU-hungry. For clipping your own footage into shorts: Clapclip, MIT-licensed, free self-hosted or hosted from $12/month.',
     },
     {
       q: 'Can open source AI generate videos from text?',
-      a: 'Yes: Mochi 1, Open-Sora and HunyuanVideo publish open weights. Clipify is not one of them; it turns long real footage into short vertical clips.',
+      a: 'Yes: Mochi 1, Open-Sora and HunyuanVideo publish open weights. Clapclip is not one of them; it turns long real footage into short vertical clips.',
     },
   ],
 })
@@ -616,17 +616,17 @@ ${sources([
  * and active-speaker cutting are capabilities the competitor pages cannot show. */
 const podcastToShorts = () => ({
   path: '/podcast-to-shorts',
-  title: 'Podcast to Shorts: Both Speakers Stay in Frame | Clipify',
+  title: 'Podcast to Shorts: Both Speakers Stay in Frame | Clapclip',
   description:
-    'Turn a podcast into vertical clips without cropping out half the conversation: Clipify stacks both speakers and cuts to whoever is talking. Free self-hosted.',
+    'Turn a podcast into vertical clips without cropping out half the conversation: Clapclip stacks both speakers and cuts to whoever is talking. Free self-hosted.',
   h1: 'Turn a podcast into shorts without cropping out half the conversation',
   breadcrumb: [{ name: 'Podcast to shorts' }],
   published: '2026-08-04',
   updated: '2026-08-04',
   tldr: [
-    'A two-person podcast is the hardest input an auto-clipper faces: a single centered crop shows the wrong person half the time, or an empty chair. Clipify detects a real two-shot and renders both speakers stacked in half-frames, so a reply never happens off screen.',
+    'A two-person podcast is the hardest input an auto-clipper faces: a single centered crop shows the wrong person half the time, or an empty chair. Clapclip detects a real two-shot and renders both speakers stacked in half-frames, so a reply never happens off screen.',
     'The rest of the pipeline is the same as for any long video: word-level transcription, scene detection, Gemini scoring the 3 to 15 strongest moments, subtitles burned in, and direct publishing to TikTok, Instagram Reels and YouTube Shorts.',
-    'Cost is where podcasts punish credit-based tools: they bill the whole episode length before you see a clip. Self-hosted Clipify has no meter at all; hosted plans start at $12/month.',
+    'Cost is where podcasts punish credit-based tools: they bill the whole episode length before you see a clip. Self-hosted Clapclip has no meter at all; hosted plans start at $12/month.',
   ],
   body: `
 <h2>Why podcasts break naive clipping tools</h2>
@@ -639,7 +639,7 @@ footage. It is not carelessness, it is that a single moving crop cannot show two
 people at once.</p>
 
 <h2>How the two-speaker layout works</h2>
-<p>Clipify detects when a scene is a genuine two-shot, meaning both faces are
+<p>Clapclip detects when a scene is a genuine two-shot, meaning both faces are
 visible in the same frame for at least half of the sampled frames. That test
 matters: it is what separates a real side-by-side conversation from
 shot/countershot editing, where a naive split would show the same person twice.
@@ -662,12 +662,12 @@ one side of the table.</p>
 <p>Credit-metered tools bill on the length of the video you import, not on the
 clips you keep. As of August 2026, a 60-minute episode costs 60 credits at Opus
 Clip or Vizard whether it yields 5 usable clips or 20, and a weekly show at that
-length runs past the entry plans of both. Clipify prices the other way
+length runs past the entry plans of both. Clapclip prices the other way
 around:</p>
 ${pricingParagraph}
 
 <h2>What about audio-only podcasts?</h2>
-<p>Clipify clips video. If your show is audio-only, the pipeline has nothing
+<p>Clapclip clips video. If your show is audio-only, the pipeline has nothing
 to reframe, and tools that generate waveform audiograms serve that case better.
 The moment you record video, even a static two-camera setup, everything on this
 page applies.</p>
@@ -675,7 +675,7 @@ page applies.</p>
 ${faqBlock([
   {
     q: 'How do I turn a podcast into clips for free?',
-    a: 'Self-host Clipify: clone the MIT-licensed repo, run docker compose up, add a free-tier Google Gemini API key and paste your episode link. No watermark and no cap. If you would rather not run anything, Clipify Cloud clips 20 minutes a month free with a watermark, and paid plans start at $12/month.',
+    a: 'Self-host Clapclip: clone the MIT-licensed repo, run docker compose up, add a free-tier Google Gemini API key and paste your episode link. No watermark and no cap. If you would rather not run anything, Clapclip Cloud clips 20 minutes a month free with a watermark, and paid plans start at $12/month.',
   },
   {
     q: 'How does it handle two people talking?',
@@ -689,13 +689,13 @@ ${faqBlock([
 
 ${sources([
   'Competitor per-minute credit billing checked 2026-08-04 on vendor pricing and help pages.',
-  `Split-layout and speaker-cut implementation in the project source at <a href="${SITE.repo}" rel="noopener">github.com/mutonby/clipify</a>.`,
+  `Split-layout and speaker-cut implementation in the project source at <a href="${SITE.repo}" rel="noopener">github.com/mutonby/clapclip</a>.`,
 ])}
 `,
   faq: [
     {
       q: 'How do I turn a podcast into clips for free?',
-      a: 'Self-host Clipify (MIT, Docker, bring a free-tier Gemini key): no watermark, no cap. Or use Clipify Cloud: 20 free minutes a month with a watermark, paid plans from $12/month.',
+      a: 'Self-host Clapclip (MIT, Docker, bring a free-tier Gemini key): no watermark, no cap. Or use Clapclip Cloud: 20 free minutes a month with a watermark, paid plans from $12/month.',
     },
     {
       q: 'How does it handle two people talking?',
@@ -709,7 +709,7 @@ ${sources([
  * told from the URL-first angle. */
 const youtubeConverter = () => ({
   path: '/youtube-to-shorts-converter',
-  title: 'YouTube to Shorts Converter: Paste the Link | Clipify',
+  title: 'YouTube to Shorts Converter: Paste the Link | Clapclip',
   description:
     'Convert a YouTube video into Shorts by pasting the link: no download-and-reupload step. AI picks the moments, crops to 9:16 and burns in the subtitles.',
   h1: 'A YouTube to Shorts converter that starts from the link',
@@ -724,7 +724,7 @@ const youtubeConverter = () => ({
   body: `
 <h2>How to convert a YouTube video into Shorts</h2>
 <ol>
-<li>Paste the video's URL. Clipify fetches it directly; there is no download-then-upload round trip through your machine.</li>
+<li>Paste the video's URL. Clapclip fetches it directly; there is no download-then-upload round trip through your machine.</li>
 <li>The video is transcribed with word-level timestamps and scanned for scene boundaries.</li>
 <li>Google Gemini scores the transcript against the scenes and picks the 3 to 15 segments most likely to stand alone, 15 to 60 seconds each.</li>
 <li>Each segment is cropped to 9:16 with face tracking, or a split or screencast layout when the content calls for it, and subtitles are burned in.</li>
@@ -737,7 +737,7 @@ const youtubeConverter = () => ({
 only accepts uploads adds a detour: fetch the file with a downloader, wait,
 re-upload gigabytes, wait again. It also decides who can use the free tier at
 all. As of August 2026, Opus Clip's free plan accepts uploads only, with link
-import reserved for paid plans. Clipify accepts links on every tier,
+import reserved for paid plans. Clapclip accepts links on every tier,
 including both free ones, because the fetch step costs the pipeline almost
 nothing and the detour costs you the most time of any step.</p>
 
@@ -753,7 +753,7 @@ keep the screen legible instead of cropping it to ribbons.</p>
 <p>Yours, and those you have permission for. Your own uploads, your podcast
 guests' episodes with their blessing, client channels you manage, licensed or
 public-domain footage. Clipping someone else's video without permission is a
-copyright question Clipify does not answer for you, and platforms remove
+copyright question Clapclip does not answer for you, and platforms remove
 reuploads that fail it. The tool fetches what you point it at; the rights are
 your call and your responsibility.</p>
 
@@ -763,11 +763,11 @@ ${pricingParagraph}
 ${faqBlock([
   {
     q: 'Can I convert a YouTube video to Shorts for free?',
-    a: 'Yes, two ways. Self-host Clipify (MIT licence, Docker, your own free-tier Gemini API key): unlimited, no watermark. Or use the hosted free tier: 20 minutes of source video a month, watermarked, no credit card. Paid hosted plans without watermark start at $12/month.',
+    a: 'Yes, two ways. Self-host Clapclip (MIT licence, Docker, your own free-tier Gemini API key): unlimited, no watermark. Or use the hosted free tier: 20 minutes of source video a month, watermarked, no credit card. Paid hosted plans without watermark start at $12/month.',
   },
   {
     q: 'Do I need to download the video first?',
-    a: 'No. Paste the URL and Clipify fetches the source itself on every tier, including free ones. Local file upload is also supported when the source is not online.',
+    a: 'No. Paste the URL and Clapclip fetches the source itself on every tier, including free ones. Local file upload is also supported when the source is not online.',
   },
   {
     q: 'Can I clip a video from someone else’s channel?',
@@ -778,11 +778,11 @@ ${faqBlock([
   faq: [
     {
       q: 'Can I convert a YouTube video to Shorts for free?',
-      a: 'Yes: self-hosted Clipify is free with no cap (MIT, Docker, your own Gemini key), and the hosted free tier covers 20 watermarked minutes a month. Paid hosted plans start at $12/month.',
+      a: 'Yes: self-hosted Clapclip is free with no cap (MIT, Docker, your own Gemini key), and the hosted free tier covers 20 watermarked minutes a month. Paid hosted plans start at $12/month.',
     },
     {
       q: 'Do I need to download the video first?',
-      a: 'No. Clipify fetches the video from the pasted URL on every tier, free tiers included.',
+      a: 'No. Clapclip fetches the video from the pasted URL on every tier, free tiers included.',
     },
   ],
 })
@@ -792,38 +792,38 @@ ${faqBlock([
  * intent instead of one page diluting both. */
 const automateShorts = () => ({
   path: '/automate-shorts-api',
-  title: 'Automate Shorts: Clip and Publish on a Schedule | Clipify',
+  title: 'Automate Shorts: Clip and Publish on a Schedule | Clapclip',
   description:
-    'One POST starts the job, one signed webhook ends it. Automate shorts with the Clipify REST API, n8n or cron, with no per-call meter and no polling loop.',
+    'One POST starts the job, one signed webhook ends it. Automate shorts with the Clapclip REST API, n8n or cron, with no per-call meter and no polling loop.',
   h1: 'Automate shorts end to end: one request in, one webhook out',
   breadcrumb: [{ name: 'Automate shorts' }],
   published: '2026-08-04',
   updated: '2026-08-04',
   tldr: [
-    'The whole automation loop is two HTTP messages. You POST a video URL with an API key and a webhook address; when processing ends, Clipify sends exactly one signed webhook carrying clip titles and durable download links. No polling loop, no timeout guessing.',
+    'The whole automation loop is two HTTP messages. You POST a video URL with an API key and a webhook address; when processing ends, Clapclip sends exactly one signed webhook carrying clip titles and durable download links. No polling loop, no timeout guessing.',
     'API calls draw from the same minute balance as the dashboard, with no separate meter and no per-call pricing. On the self-hosted edition there is no meter at all, which is what makes an always-on pipeline affordable.',
     'For agent-driven automation (Claude, ChatGPT, custom agents) the same account also exposes an MCP server; that protocol surface is documented on its own page.',
   ],
   body: `
 <h2>The loop, end to end</h2>
 <p>Start a job with one request:</p>
-<pre><code>curl -X POST https://api.clipify.app/api/process \\
+<pre><code>curl -X POST https://api.clapclip.app/api/process \\
   -H "Authorization: Bearer osk_..." -H "Content-Type: application/json" \\
   -d '{"url": "https://youtube.com/watch?v=...", "acknowledged": true,
-       "webhook_url": "https://your-server.com/hooks/clipify",
+       "webhook_url": "https://your-server.com/hooks/clapclip",
        "webhook_secret": "your-shared-secret"}'</code></pre>
 <p>The response returns a job id immediately. Minutes later, when the clips are
-cut, subtitled and archived, Clipify POSTs once to your webhook URL with the
+cut, subtitled and archived, Clapclip POSTs once to your webhook URL with the
 job outcome, clip titles and download links durable enough to fetch later. A
 failed job also fires the webhook, so your pipeline never hangs on silence.</p>
 
 <h2>Verifying the webhook</h2>
 <p>If you passed a <code>webhook_secret</code>, the request carries an
-<code>X-Clipify-Signature</code> header of the form
+<code>X-Clapclip-Signature</code> header of the form
 <code>sha256=&lt;hex&gt;</code>: the HMAC-SHA256 of the raw request body under
 your secret. Recompute it and compare in constant time:</p>
 <pre><code>expected = "sha256=" + hmac.new(secret, raw_body, hashlib.sha256).hexdigest()
-hmac.compare_digest(expected, request.headers["X-Clipify-Signature"])</code></pre>
+hmac.compare_digest(expected, request.headers["X-Clapclip-Signature"])</code></pre>
 <p>Reject anything that does not match and you have closed the door on forged
 deliveries.</p>
 
@@ -842,8 +842,8 @@ have. A cron job that submits the latest episode URL every Monday, a GitHub
 Action on your podcast repo, or an agent that watches a feed. The webhook does
 the second half, so nothing stays running in between. If you would rather not
 write the curl, the CLI wraps it:</p>
-<pre><code>uvx clipify process "$EPISODE_URL" \\
-  --webhook https://your-server.com/hooks/clipify \\
+<pre><code>uvx clapclip process "$EPISODE_URL" \\
+  --webhook https://your-server.com/hooks/clapclip \\
   --webhook-secret "$SECRET"</code></pre>
 
 <h2>What automation costs</h2>
@@ -851,7 +851,7 @@ write the curl, the CLI wraps it:</p>
 is no per-call price, no separate API tier and no automation surcharge. As of
 August 2026 that is not the market default: the mainstream tools meter their
 APIs per source minute or per operation, on top of subscription tiers, so an
-always-on pipeline runs with a taxi meter attached. Self-hosted Clipify has
+always-on pipeline runs with a taxi meter attached. Self-hosted Clapclip has
 no meter of any kind, and the hosted plans are flat:</p>
 ${pricingParagraph}
 
@@ -864,10 +864,10 @@ client setup live on the <a href="/mcp">MCP server and API page</a>.</p>
 ${faqBlock([
   {
     q: 'Can I automate YouTube Shorts creation with an open source tool?',
-    a: 'Yes. Clipify is MIT-licensed and its self-hosted edition serves the same REST API and MCP server as the hosted service, with no metering. One POST submits a video, a signed webhook returns the finished clips, and the publishing endpoint posts them to YouTube Shorts, TikTok and Instagram Reels.',
+    a: 'Yes. Clapclip is MIT-licensed and its self-hosted edition serves the same REST API and MCP server as the hosted service, with no metering. One POST submits a video, a signed webhook returns the finished clips, and the publishing endpoint posts them to YouTube Shorts, TikTok and Instagram Reels.',
   },
   {
-    q: 'Is there an n8n integration for Clipify?',
+    q: 'Is there an n8n integration for Clapclip?',
     a: 'Yes: an importable workflow at /n8n-youtube-shorts-automation watches a YouTube channel, clips each video, sends the clips to Telegram for approval and schedules the approved ones to your socials. Nothing forces you to use it, though, since the integration is just an HTTP Request node posting to /api/process plus a Webhook trigger.',
   },
   {
@@ -877,14 +877,14 @@ ${faqBlock([
 ])}
 
 ${sources([
-  `Webhook signing implementation in the project source at <a href="${SITE.repo}" rel="noopener">github.com/mutonby/clipify</a>.`,
+  `Webhook signing implementation in the project source at <a href="${SITE.repo}" rel="noopener">github.com/mutonby/clapclip</a>.`,
   'Competitor API metering checked 2026-08-04 on public pricing and developer documentation.',
 ])}
 `,
   faq: [
     {
       q: 'Can I automate YouTube Shorts creation with an open source tool?',
-      a: 'Yes: Clipify self-hosted serves the same REST API, MCP server and signed webhooks as the hosted service, MIT-licensed and unmetered. One POST in, one signed webhook out.',
+      a: 'Yes: Clapclip self-hosted serves the same REST API, MCP server and signed webhooks as the hosted service, MIT-licensed and unmetered. One POST in, one signed webhook out.',
     },
     {
       q: 'Do automated API calls cost more than using the dashboard?',
@@ -900,7 +900,7 @@ ${sources([
  * URL to point at that is ours rather than a raw file on GitHub. */
 const n8nTemplate = () => ({
   path: '/n8n-youtube-shorts-automation',
-  title: 'n8n YouTube Shorts Template (Auto-Posting) | Clipify',
+  title: 'n8n YouTube Shorts Template (Auto-Posting) | Clapclip',
   description:
     'A free n8n workflow that watches your YouTube channel, clips each video into shorts, sends them to Telegram for approval and drip-publishes them automatically.',
   h1: 'The n8n content machine: your channel clips itself, you approve from your phone',
@@ -910,7 +910,7 @@ const n8nTemplate = () => ({
   body: `
 <figure class="shot">
 <img src="/n8n-content-machine-workflow.png" width="950" height="750" loading="eager"
-     alt="The Clipify content machine open in n8n: four labelled stages, from the daily channel RSS trigger through the clipping call, the Telegram approval buttons and the weekly analytics digest.">
+     alt="The Clapclip content machine open in n8n: four labelled stages, from the daily channel RSS trigger through the clipping call, the Telegram approval buttons and the weekly analytics digest.">
 <figcaption>The whole machine is one canvas: watch the channel, clip, approve from Telegram, drip-publish and measure.</figcaption>
 </figure>
 <p>This workflow runs a YouTube channel on its own without handing over the
@@ -923,8 +923,8 @@ did. Two credentials, no polling loop, no TikTok or Instagram OAuth app.</p>
 <h2>Download the workflow</h2>
 <p>The JSON lives in the project repository, not behind an email form:</p>
 <ul>
-<li><a href="${SITE.repo}/blob/main/examples/n8n/clipify-content-machine.json" rel="noopener">clipify-content-machine.json</a> — the full four-stage machine described below.</li>
-<li><a href="${SITE.repo}/blob/main/examples/n8n/clipify-clip-and-notify.json" rel="noopener">clipify-clip-and-notify.json</a> — the minimal version: a form takes a video URL, a signed webhook returns the clips.</li>
+<li><a href="${SITE.repo}/blob/main/examples/n8n/clapclip-content-machine.json" rel="noopener">clapclip-content-machine.json</a> — the full four-stage machine described below.</li>
+<li><a href="${SITE.repo}/blob/main/examples/n8n/clapclip-clip-and-notify.json" rel="noopener">clapclip-clip-and-notify.json</a> — the minimal version: a form takes a video URL, a signed webhook returns the clips.</li>
 <li><a href="${SITE.repo}/tree/main/examples/n8n" rel="noopener">Setup notes</a> — credentials, the webhook secret, and the known limits.</li>
 </ul>
 <p>In n8n: <strong>Workflows → Import from file</strong>, then fill in your channel
@@ -941,14 +941,14 @@ minute burn predictable, and a 402 (out of minutes) pauses the machine with a
 Telegram notice instead of failing silently.</li>
 <li><strong>Clip, then get called back.</strong> One HTTP request to
 <code>/api/process</code> carrying a <code>webhook_url</code>. When the job
-ends, Clipify POSTs once with the finished clips and durable download links.
+ends, Clapclip POSTs once with the finished clips and durable download links.
 There is no Wait node anywhere in the workflow.</li>
 <li><strong>Approve from your phone.</strong> Each 9:16 clip arrives in Telegram
 as a video message with Publish and Skip buttons. A human approves every post,
 which is also what separates this from the fully automated pipelines that
 YouTube's inauthentic-content policy targets.</li>
 <li><strong>Drip-publish and measure.</strong> Approved clips take the next free
-daily slot and post to the accounts you connected in Clipify. Every Sunday
+daily slot and post to the accounts you connected in Clapclip. Every Sunday
 the workflow reads back the analytics of what it published and sends you
 impressions, per-platform split and your best post.</li>
 </ol>
@@ -959,7 +959,7 @@ requires an audited app to post publicly, and the Instagram Graph API refuses
 anything that is not a public static URL, which is why Google Drive links fail
 there. This workflow sidesteps both by posting through
 <code>POST /api/social/post</code> against the networks you connected once in
-your Clipify account. The workflow itself holds no social credentials, and
+your Clapclip account. The workflow itself holds no social credentials, and
 the clip file is already on durable storage, so the public-URL requirement is
 satisfied before Instagram ever sees it.</p>
 
@@ -1001,15 +1001,15 @@ loop on the <a href="/automate-shorts-api">automation page</a>.</p>
 ${faqBlock([
   {
     q: 'Is there a free n8n template to turn long videos into shorts?',
-    a: 'Yes. Clipify publishes an MIT-licensed n8n workflow that clips a YouTube channel automatically and posts the approved clips to TikTok, Instagram and YouTube. The JSON is in the project repository with no email gate, and the clipper behind it is open source, so it can run entirely on your own hardware.',
+    a: 'Yes. Clapclip publishes an MIT-licensed n8n workflow that clips a YouTube channel automatically and posts the approved clips to TikTok, Instagram and YouTube. The JSON is in the project repository with no email gate, and the clipper behind it is open source, so it can run entirely on your own hardware.',
   },
   {
     q: 'How do I post a video to TikTok or Instagram from n8n?',
-    a: 'Neither platform has a native n8n node, and both have hard requirements: TikTok needs an audited app for public posts and Instagram needs a public static URL for the media. Posting through the Clipify API avoids both, because the accounts are connected once in your Clipify account and the clip already lives on durable public storage.',
+    a: 'Neither platform has a native n8n node, and both have hard requirements: TikTok needs an audited app for public posts and Instagram needs a public static URL for the media. Posting through the Clapclip API avoids both, because the accounts are connected once in your Clapclip account and the clip already lives on durable public storage.',
   },
   {
     q: 'Does the workflow poll for the clipping job to finish?',
-    a: 'No. Clipping a real video takes minutes, so the workflow passes a webhook_url with the job and Clipify calls it exactly once when the job reaches a terminal state. Failed jobs fire the same webhook with an error field, so the flow never hangs.',
+    a: 'No. Clipping a real video takes minutes, so the workflow passes a webhook_url with the job and Clapclip calls it exactly once when the job reaches a terminal state. Failed jobs fire the same webhook with an error field, so the flow never hangs.',
   },
   {
     q: 'Can the clips publish without me approving them?',
@@ -1018,42 +1018,42 @@ ${faqBlock([
 ])}
 
 ${sources([
-  `Workflow JSON and setup notes in the project repository at <a href="${SITE.repo}/tree/main/examples/n8n" rel="noopener">github.com/mutonby/clipify</a>.`,
+  `Workflow JSON and setup notes in the project repository at <a href="${SITE.repo}/tree/main/examples/n8n" rel="noopener">github.com/mutonby/clapclip</a>.`,
   'TikTok and Instagram publishing constraints checked against their developer documentation, August 2026.',
 ])}
 `,
   faq: [
     {
       q: 'Is there a free n8n template to turn long videos into shorts?',
-      a: 'Yes: Clipify ships an MIT-licensed n8n workflow that clips a YouTube channel automatically and posts approved clips to TikTok, Instagram and YouTube. The JSON is public in the repository with no email gate.',
+      a: 'Yes: Clapclip ships an MIT-licensed n8n workflow that clips a YouTube channel automatically and posts approved clips to TikTok, Instagram and YouTube. The JSON is public in the repository with no email gate.',
     },
     {
       q: 'How do I post a video to TikTok or Instagram from n8n?',
-      a: 'Post through the Clipify API: the social accounts are connected once in your Clipify account, so the workflow needs no TikTok app audit and no public CDN URL for the file.',
+      a: 'Post through the Clapclip API: the social accounts are connected once in your Clapclip account, so the workflow needs no TikTok app audit and no public CDN URL for the file.',
     },
   ],
 })
 
 const mcpAgentsPage = () => ({
   path: '/mcp',
-  title: 'Clip Video From AI Agents: MCP Server & API | Clipify',
+  title: 'Clip Video From AI Agents: MCP Server & API | Clapclip',
   description:
-    'Clipify ships a built-in MCP server, so Claude, ChatGPT, Cursor or n8n can clip and publish videos for you: REST API with keys and signed webhooks.',
+    'Clapclip ships a built-in MCP server, so Claude, ChatGPT, Cursor or n8n can clip and publish videos for you: REST API with keys and signed webhooks.',
   h1: 'Clip and publish video from an AI agent',
   breadcrumb: [{ name: 'MCP server and API' }],
   cta: {
     label: 'For agents',
     title: 'Point your agent at a real pipeline',
-    body: 'Connect Claude or ChatGPT to mcp.clipify.app/mcp, or copy an API key. Self-hosted serves the same endpoint, unmetered.',
+    body: 'Connect Claude or ChatGPT to mcp.clapclip.app/mcp, or copy an API key. Self-hosted serves the same endpoint, unmetered.',
     button: 'Get an API key',
   },
   tldr: [
-    'Clipify has a native MCP server at mcp.clipify.app/mcp. Connect any MCP client, Claude, ChatGPT, Cursor or a custom agent, and a prompt like "clip this podcast and schedule the best three to TikTok" becomes one instruction instead of an afternoon in an editor.',
+    'Clapclip has a native MCP server at mcp.clapclip.app/mcp. Connect any MCP client, Claude, ChatGPT, Cursor or a custom agent, and a prompt like "clip this podcast and schedule the best three to TikTok" becomes one instruction instead of an afternoon in an editor.',
     'Eight tools cover the whole pipeline: process_video, create_upload, get_job_status, list_clips, get_quota, add_subtitles, recut_clip and publish_clip. There is also a plain REST API with per-user keys, and completion webhooks so pipelines never poll.',
-    'The difference that survives comparison shopping is the meter. Most clipping tools now have an API, and Opus Clip added an MCP server in July 2026, but they meter agent calls per source minute or per operation. Clipify API calls draw from the same flat minute balance as the dashboard, and the self-hosted edition, free and MIT-licensed, serves the same MCP endpoint with no meter at all.',
+    'The difference that survives comparison shopping is the meter. Most clipping tools now have an API, and Opus Clip added an MCP server in July 2026, but they meter agent calls per source minute or per operation. Clapclip API calls draw from the same flat minute balance as the dashboard, and the self-hosted edition, free and MIT-licensed, serves the same MCP endpoint with no meter at all.',
   ],
   body: `
-<h2>What can an agent actually do with Clipify?</h2>
+<h2>What can an agent actually do with Clapclip?</h2>
 <p>Everything the dashboard does. The MCP server is not a wrapper around a
 subset of features: each tool calls the same pipeline the web app uses, with the
 same account, the same minutes and the same job history. An agent can take a
@@ -1066,18 +1066,18 @@ Reels and YouTube Shorts.</p>
 registration, which is what claude.ai and ChatGPT expect from a remote MCP
 server, so there is no key to copy:</p>
 <ol>
-<li><strong>claude.ai:</strong> Settings, Connectors, Add custom connector, paste <code>https://mcp.clipify.app/mcp</code>, Connect.</li>
+<li><strong>claude.ai:</strong> Settings, Connectors, Add custom connector, paste <code>https://mcp.clapclip.app/mcp</code>, Connect.</li>
 <li><strong>ChatGPT:</strong> Settings, Connectors, Create, paste the same URL, choose OAuth.</li>
-<li>Approve the access on clipify.app (sign in if you are not). The 8 tools appear in every chat, and the connection is listed under Account, API keys, where revoking it disconnects the app.</li>
+<li>Approve the access on clapclip.app (sign in if you are not). The 8 tools appear in every chat, and the connection is listed under Account, API keys, where revoking it disconnects the app.</li>
 </ol>
 <h2>How do I connect Claude Code, Cursor or n8n?</h2>
 <p>CLI and workflow clients take an API key instead: create one in your account
 page (shown once, starts with <code>osk_</code>) and pass it as a Bearer
 token. With Claude Code:</p>
-<pre><code>claude mcp add --transport http clipify https://mcp.clipify.app/mcp \\
+<pre><code>claude mcp add --transport http clapclip https://mcp.clapclip.app/mcp \\
   --header "Authorization: Bearer osk_..."</code></pre>
 <p>Any client that speaks Streamable HTTP works the same way: the endpoint is
-<code>https://mcp.clipify.app/mcp</code>, the server describes itself over
+<code>https://mcp.clapclip.app/mcp</code>, the server describes itself over
 the protocol, tool schemas included, and the account page has copy-ready
 snippets for Claude Desktop, Cursor, n8n and curl.</p>
 
@@ -1109,7 +1109,7 @@ server can run:</p>
 <table>
 <thead><tr><th>Tool</th><th>MCP server</th><th>REST API</th><th>How agent calls are billed</th></tr></thead>
 <tbody>
-<tr><td class="os">Clipify</td><td class="os yes">Yes, hosted and self-hosted</td><td class="os yes">Yes, with signed webhooks</td><td class="os">Same flat minute balance as the dashboard; self-hosted has no meter</td></tr>
+<tr><td class="os">Clapclip</td><td class="os yes">Yes, hosted and self-hosted</td><td class="os yes">Yes, with signed webhooks</td><td class="os">Same flat minute balance as the dashboard; self-hosted has no meter</td></tr>
 <tr><td>Opus Clip</td><td class="yes">Yes, since July 2026</td><td>Yes</td><td>Credits per source minute, expiring in 60 days</td></tr>
 <tr><td>Reap</td><td class="yes">Yes, plus CLI</td><td>Yes</td><td>Subscription from $9.99/month, metered minutes</td></tr>
 <tr><td>Klap</td><td>No</td><td>Yes</td><td>Per operation, roughly $0.32 to $0.48 each</td></tr>
@@ -1127,32 +1127,32 @@ with the API</a>.</p>
 <h2>Can I use a plain REST API instead of MCP?</h2>
 <p>Yes. The same <code>osk_</code> key authenticates against the REST API, and
 interactive documentation lives at
-<a href="https://api.clipify.app/docs" rel="noopener">api.clipify.app/docs</a>
+<a href="https://api.clapclip.app/docs" rel="noopener">api.clapclip.app/docs</a>
 with the OpenAPI spec at <code>/openapi.json</code>. A processing job is one
 request:</p>
-<pre><code>curl -X POST https://api.clipify.app/api/process \\
+<pre><code>curl -X POST https://api.clapclip.app/api/process \\
   -H "Authorization: Bearer osk_..." -H "Content-Type: application/json" \\
   -d '{"url": "https://youtube.com/watch?v=...", "acknowledged": true,
-       "webhook_url": "https://your-server.com/hooks/clipify"}'</code></pre>
+       "webhook_url": "https://your-server.com/hooks/clapclip"}'</code></pre>
 
 <h2>Is there a CLI?</h2>
 <p>Yes, a zero-dependency one on PyPI. It talks to the same REST surface as
 everything else, so the terminal, the dashboard and the agents can never
 disagree about what a job did:</p>
-<pre><code>pip install clipify   # or: uvx clipify
+<pre><code>pip install clapclip   # or: uvx clapclip
 
-export CLIPIFY_API_KEY=osk_...
-clipify process "https://youtube.com/watch?v=..." --wait
-clipify clips &lt;job_id&gt;
-clipify publish &lt;job_id&gt; 0 --platforms tiktok,youtube</code></pre>
-<p>Point <code>CLIPIFY_API_URL</code> at <code>http://localhost:8000</code>
+export CLAPCLIP_API_KEY=osk_...
+clapclip process "https://youtube.com/watch?v=..." --wait
+clapclip clips &lt;job_id&gt;
+clapclip publish &lt;job_id&gt; 0 --platforms tiktok,youtube</code></pre>
+<p>Point <code>CLAPCLIP_API_URL</code> at <code>http://localhost:8000</code>
 and the same binary drives a self-hosted instance with no key.</p>
 
 <h2>How do completion webhooks work?</h2>
-<p>Pass <code>webhook_url</code> when starting a job and Clipify sends
+<p>Pass <code>webhook_url</code> when starting a job and Clapclip sends
 exactly one POST when the job finishes or fails, with clip titles and download
 links in the body. Add a <code>webhook_secret</code> and the body is signed with
-HMAC-SHA256 in the <code>X-Clipify-Signature</code> header so your receiver
+HMAC-SHA256 in the <code>X-Clapclip-Signature</code> header so your receiver
 can verify the sender. This is what lets an n8n, Zapier or cron pipeline run
 without a polling loop.</p>
 
@@ -1170,16 +1170,16 @@ balance as the dashboard, so automation does not change the price of anything.</
 
 ${faqBlock([
   {
-    q: 'Does Clipify have an MCP server?',
-    a: 'Yes, a native one at mcp.clipify.app/mcp using the Streamable HTTP transport. It exposes eight tools covering the full pipeline: process_video, create_upload, get_job_status, list_clips, get_quota, add_subtitles, recut_clip and publish_clip. Authentication is an API key created in the dashboard, sent as a Bearer token.',
+    q: 'Does Clapclip have an MCP server?',
+    a: 'Yes, a native one at mcp.clapclip.app/mcp using the Streamable HTTP transport. It exposes eight tools covering the full pipeline: process_video, create_upload, get_job_status, list_clips, get_quota, add_subtitles, recut_clip and publish_clip. Authentication is an API key created in the dashboard, sent as a Bearer token.',
   },
   {
-    q: 'Can Claude or ChatGPT create video clips with Clipify?',
-    a: 'Yes. Any MCP-capable client, including Claude and ChatGPT, can connect to mcp.clipify.app/mcp with an API key and drive the whole flow: submit a video URL, wait for processing, list the generated clips and publish them to TikTok, Instagram or YouTube.',
+    q: 'Can Claude or ChatGPT create video clips with Clapclip?',
+    a: 'Yes. Any MCP-capable client, including Claude and ChatGPT, can connect to mcp.clapclip.app/mcp with an API key and drive the whole flow: submit a video URL, wait for processing, list the generated clips and publish them to TikTok, Instagram or YouTube.',
   },
   {
-    q: 'Is there an API for Clipify?',
-    a: 'Yes, a REST API documented at api.clipify.app/docs, authenticated with per-user osk_ keys created in the dashboard. It covers processing, status, subtitles, publishing and completion webhooks.',
+    q: 'Is there an API for Clapclip?',
+    a: 'Yes, a REST API documented at api.clapclip.app/docs, authenticated with per-user osk_ keys created in the dashboard. It covers processing, status, subtitles, publishing and completion webhooks.',
   },
   {
     q: 'Do API calls cost extra?',
@@ -1187,22 +1187,22 @@ ${faqBlock([
   },
   {
     q: 'How is this different from the Opus Clip MCP server?',
-    a: 'The tool surface is similar: both expose around six tools covering processing, captions and publishing. The differences are billing and deployment. Opus Clip meters MCP usage in credits per source minute, and those credits expire in 60 days; Clipify draws from a flat minute balance with no per-call pricing. And only Clipify can run the same MCP server on your own machine, unmetered, because the code is MIT-licensed.',
+    a: 'The tool surface is similar: both expose around six tools covering processing, captions and publishing. The differences are billing and deployment. Opus Clip meters MCP usage in credits per source minute, and those credits expire in 60 days; Clapclip draws from a flat minute balance with no per-call pricing. And only Clapclip can run the same MCP server on your own machine, unmetered, because the code is MIT-licensed.',
   },
 ])}
 
 ${sources([
   `MCP specification and transports at <a href="https://modelcontextprotocol.io" rel="noopener">modelcontextprotocol.io</a>.`,
-  `Clipify server implementation in the project source at <a href="${SITE.repo}" rel="noopener">github.com/mutonby/clipify</a>.`,
+  `Clapclip server implementation in the project source at <a href="${SITE.repo}" rel="noopener">github.com/mutonby/clapclip</a>.`,
 ])}
 `,
   faq: [
     {
-      q: 'Does Clipify have an MCP server?',
-      a: 'Yes, a native MCP server at mcp.clipify.app/mcp with six tools covering the full pipeline, authenticated with an API key created in the dashboard.',
+      q: 'Does Clapclip have an MCP server?',
+      a: 'Yes, a native MCP server at mcp.clapclip.app/mcp with six tools covering the full pipeline, authenticated with an API key created in the dashboard.',
     },
     {
-      q: 'Can Claude or ChatGPT create video clips with Clipify?',
+      q: 'Can Claude or ChatGPT create video clips with Clapclip?',
       a: 'Yes. Any MCP-capable client can connect with an API key and drive the whole flow from video URL to published clip.',
     },
     {
@@ -1211,7 +1211,7 @@ ${sources([
     },
     {
       q: 'How is this different from the Opus Clip MCP server?',
-      a: 'Similar tool surface, different billing and deployment: Opus Clip meters MCP usage in credits per source minute that expire in 60 days, while Clipify draws from a flat minute balance, and only Clipify can run the same MCP server self-hosted and unmetered.',
+      a: 'Similar tool surface, different billing and deployment: Opus Clip meters MCP usage in credits per source minute that expire in 60 days, while Clapclip draws from a flat minute balance, and only Clapclip can run the same MCP server self-hosted and unmetered.',
     },
   ],
 })
@@ -1238,7 +1238,7 @@ const opusClipPricing = () => {
     .join('')
   return {
     path: '/opus-clip-pricing',
-    title: 'Opus Clip Pricing: Credits, Free Plan, Trials | Clipify',
+    title: 'Opus Clip Pricing: Credits, Free Plan, Trials | Clapclip',
     description:
       'What Opus Clip costs in 2026: credits are billed per minute of source video, not per clip, so a 60-minute podcast costs 60 credits whatever it yields.',
     h1: 'What Opus Clip actually costs',
@@ -1258,7 +1258,7 @@ const opusClipPricing = () => {
     tldr: [
       `Opus Clip's entry price is ${esc(OPUS.entryPrice)}, and the credit it charges for is one <strong>minute of source video you import</strong>, not one clip you export. A 60-minute podcast costs 60 credits whether it yields 5 clips or 20.`,
       'The free tier is 60 source minutes a month, watermarked, 720p. There is no separate time-boxed trial published alongside it.',
-      `Clipify prices the other way round: $0 self-hosted with no meter at all, or the hosted service with 20 free minutes a month and flat paid plans from $12/month.`,
+      `Clapclip prices the other way round: $0 self-hosted with no meter at all, or the hosted service with 20 free minutes a month and flat paid plans from $12/month.`,
     ],
     body: `
 <h2>How Opus Clip's credit system works</h2>
@@ -1296,10 +1296,10 @@ whether the pipeline is good enough for your footage, a self-hosted run on one
 episode answers it at no cost, with no watermark, because there is no metering
 or watermark code in the self-hosted edition at all.</p></div>
 
-<h2>What does Clipify cost?</h2>
+<h2>What does Clapclip cost?</h2>
 ${pricingParagraph}
 <p>Per source minute, that is the comparison worth making: Opus Clip Starter at
-$15/month buys 150 source minutes, and Clipify Cloud at $12/month buys 100
+$15/month buys 150 source minutes, and Clapclip Cloud at $12/month buys 100
 minutes with no watermark on any paid plan. Self-hosted, the meter disappears
 entirely and the only cost is the machine you already own.</p>
 
@@ -1314,13 +1314,13 @@ ${faqBlock([
   },
   {
     q: 'Is there a free Opus Clip plan?',
-    a: 'Yes: 60 source minutes a month with watermarked 720p exports, and free-plan exports are removed from storage after three days. Clipify Cloud also has a free tier (20 minutes a month, watermarked, no credit card), and the self-hosted edition is free with no watermark and no cap at all.',
+    a: 'Yes: 60 source minutes a month with watermarked 720p exports, and free-plan exports are removed from storage after three days. Clapclip Cloud also has a free tier (20 minutes a month, watermarked, no credit card), and the self-hosted edition is free with no watermark and no cap at all.',
   },
 ])}
 
 ${sources([
   `${esc(OPUS.name)} plans and credit rules checked ${esc(OPUS.checked)} on the vendor's public pricing and help pages.`,
-  `Clipify pricing from <a href="/alternatives/opus-clip">the full comparison</a> and the project source at <a href="${SITE.repo}" rel="noopener">github.com/mutonby/clipify</a>.`,
+  `Clapclip pricing from <a href="/alternatives/opus-clip">the full comparison</a> and the project source at <a href="${SITE.repo}" rel="noopener">github.com/mutonby/clapclip</a>.`,
 ])}
 `,
     faq: [
@@ -1330,7 +1330,7 @@ ${sources([
       },
       {
         q: 'Is there a free Opus Clip plan or trial?',
-        a: 'There is a free tier: 60 source minutes a month, watermarked 720p exports, no time limit. Self-hosted Clipify is free with no watermark and no cap; Clipify Cloud gives 20 watermarked minutes a month and paid plans from $12/month.',
+        a: 'There is a free tier: 60 source minutes a month, watermarked 720p exports, no time limit. Self-hosted Clapclip is free with no watermark and no cap; Clapclip Cloud gives 20 watermarked minutes a month and paid plans from $12/month.',
       },
       {
         q: 'What is a credit in Opus Clip?',
@@ -1342,7 +1342,7 @@ ${sources([
 
 const opusClipFree = () => ({
   path: '/opus-clip-free-alternative',
-  title: 'Free Opus Clip Alternative: Two Ways to Pay $0 | Clipify',
+  title: 'Free Opus Clip Alternative: Two Ways to Pay $0 | Clapclip',
   description:
     "Opus Clip's free tier watermarks exports and caps you at 60 minutes a month. Two genuinely free routes to the same clips, and neither one watermarks.",
   h1: 'A free Opus Clip alternative, without the watermark trap',
@@ -1361,7 +1361,7 @@ const opusClipFree = () => ({
   },
   tldr: [
     `Opus Clip's free tier is real but conditional: 60 source minutes a month, 720p, watermarked, and free-plan exports are deleted after three days. Its link import is a paid feature, so a YouTube URL does not work there.`,
-    'Clipify has two free routes and neither one watermarks anything on the self-hosted side. Self-hosted is MIT-licensed, runs with Docker, and has no metering or watermark code in it. The hosted free tier is 20 minutes a month with a watermark and no credit card.',
+    'Clapclip has two free routes and neither one watermarks anything on the self-hosted side. Self-hosted is MIT-licensed, runs with Docker, and has no metering or watermark code in it. The hosted free tier is 20 minutes a month with a watermark and no credit card.',
     'The honest trade: self-hosting costs you a machine and 5 to 8 minutes of processing per 8 minutes of video on CPU. If that is not worth it, the paid answer here is $12/month, not $15.',
   ],
   body: `
@@ -1373,12 +1373,12 @@ stays free when your usage grows.</p>
 <table>
 <thead><tr><th>Route</th><th>Cost</th><th>Watermark</th><th>Cap</th></tr></thead>
 <tbody>
-<tr><td class="os">Clipify self-hosted</td><td class="os">$0</td><td class="os yes">Never</td><td class="os">None, no metering code</td></tr>
-<tr><td class="os">Clipify Cloud free</td><td class="os">$0</td><td class="os">Yes</td><td class="os">20 minutes/month</td></tr>
+<tr><td class="os">Clapclip self-hosted</td><td class="os">$0</td><td class="os yes">Never</td><td class="os">None, no metering code</td></tr>
+<tr><td class="os">Clapclip Cloud free</td><td class="os">$0</td><td class="os">Yes</td><td class="os">20 minutes/month</td></tr>
 <tr><td>Opus Clip free</td><td>$0</td><td>Yes</td><td>60 minutes/month, link import excluded</td></tr>
 </tbody>
 </table>
-<p class="checked">Opus Clip free-tier terms checked 2026-08-04; Clipify
+<p class="checked">Opus Clip free-tier terms checked 2026-08-04; Clapclip
 Cloud terms are ours and current.</p>
 
 <h2>The first free route: run it yourself</h2>
@@ -1410,7 +1410,7 @@ entry tier's allowance by the second episode of the month.</p>
 ${faqBlock([
   {
     q: 'Is there a free alternative to Opus Clip with no watermark?',
-    a: 'Yes: Clipify self-hosted. It is MIT-licensed, runs on your own machine with Docker, and never adds a watermark because the self-hosted edition contains no watermark code. You supply a Google Gemini API key, whose free tier covers 1,500 requests a day.',
+    a: 'Yes: Clapclip self-hosted. It is MIT-licensed, runs on your own machine with Docker, and never adds a watermark because the self-hosted edition contains no watermark code. You supply a Google Gemini API key, whose free tier covers 1,500 requests a day.',
   },
   {
     q: 'Can I use Opus Clip for free every month?',
@@ -1424,16 +1424,16 @@ ${faqBlock([
 
 ${sources([
   `Opus Clip free-tier and watermark terms checked 2026-08-04 on the vendor's public pricing page.`,
-  `Clipify licence carve-out (MIT core, commercial <code>cloud/</code> directory) in the project source at <a href="${SITE.repo}" rel="noopener">github.com/mutonby/clipify</a>.`,
+  `Clapclip licence carve-out (MIT core, commercial <code>cloud/</code> directory) in the project source at <a href="${SITE.repo}" rel="noopener">github.com/mutonby/clapclip</a>.`,
 ])}
 `,
   faq: [
     {
       q: 'Is there a free alternative to Opus Clip without a watermark?',
-      a: 'Yes: Clipify self-hosted is MIT-licensed, runs with Docker on your own machine, and has no watermark and no cap.',
+      a: 'Yes: Clapclip self-hosted is MIT-licensed, runs with Docker on your own machine, and has no watermark and no cap.',
     },
     {
-      q: 'How much free usage does Clipify give hosted?',
+      q: 'How much free usage does Clapclip give hosted?',
       a: '20 minutes of source video a month with a watermark and no credit card; paid plans from $12/month remove the watermark.',
     },
   ],
@@ -1441,7 +1441,7 @@ ${sources([
 
 const opusAi = () => ({
   path: '/opus-ai',
-  title: 'Opus AI (opus.pro): What It Is and Costs | Clipify',
+  title: 'Opus AI (opus.pro): What It Is and Costs | Clapclip',
   description:
     'Opus AI is the clipping tool that lives at opus.pro, better known as Opus Clip. What the name refers to, what it does, what it costs, and the open source route.',
   h1: 'Opus AI: the tool behind opus.pro, explained',
@@ -1455,7 +1455,7 @@ const opusAi = () => ({
   tldr: [
     'Opus AI is not a separate product: it is the same company and pipeline most people know as Opus Clip, which runs at opus.pro. If a tool called Opus AI is clipping your long videos, it is that one.',
     `It costs ${esc(OPUS.entryPrice)} at entry, billed in credits per minute of source video rather than per clip, with a 60-minute-a-month free tier that watermarks and caps exports at 720p.`,
-    'Clipify does the same core job — moment detection, 9:16 reframing, word-level subtitles — and differs on two axes that matter: it is MIT-licensed and self-hostable, and it prices in flat minutes rather than per-minute credits.',
+    'Clapclip does the same core job — moment detection, 9:16 reframing, word-level subtitles — and differs on two axes that matter: it is MIT-licensed and self-hostable, and it prices in flat minutes rather than per-minute credits.',
   ],
   body: `
 <h2>Is Opus AI the same thing as Opus Clip?</h2>
@@ -1481,15 +1481,15 @@ source to read.</p>
 ${li(OPUS.tiers.map(([n, d]) => `<strong>${esc(n)}</strong>: ${esc(d)}`))}
 <p>${esc(OPUS.gotcha)}</p>
 
-<h2>Where Clipify differs</h2>
+<h2>Where Clapclip differs</h2>
 ${li([
-  `Clipify is MIT-licensed and can be self-hosted with Docker, so the source video never leaves your machine. Opus AI is cloud only.`,
-  `Clipify adds AI voice dubbing into 30+ languages and an AI UGC generator with lip-synced actors; the Opus AI feature set is clipping and captioning.`,
+  `Clapclip is MIT-licensed and can be self-hosted with Docker, so the source video never leaves your machine. Opus AI is cloud only.`,
+  `Clapclip adds AI voice dubbing into 30+ languages and an AI UGC generator with lip-synced actors; the Opus AI feature set is clipping and captioning.`,
   `Opus AI has the larger caption-style library and a longer track record. If your clips live or die on animated caption design, that advantage is real and this page is not going to pretend otherwise.`,
-  `Clipify self-hosted has no meter of any kind; Opus AI bills credits per minute of source imported, and those credits expire 60 days after purchase.`,
+  `Clapclip self-hosted has no meter of any kind; Opus AI bills credits per minute of source imported, and those credits expire 60 days after purchase.`,
 ])}
 
-<h2>What does Clipify cost?</h2>
+<h2>What does Clapclip cost?</h2>
 ${pricingParagraph}
 
 ${faqBlock([
@@ -1499,11 +1499,11 @@ ${faqBlock([
   },
   {
     q: 'Is Opus AI free?',
-    a: `There is a free tier: 60 source minutes a month, watermarked, 720p, and free-plan exports are deleted after three days. Paid plans start at ${OPUS.entryPrice}. Clipify self-hosted is free with no watermark and no cap, and Clipify Cloud gives 20 watermarked minutes a month free.`,
+    a: `There is a free tier: 60 source minutes a month, watermarked, 720p, and free-plan exports are deleted after three days. Paid plans start at ${OPUS.entryPrice}. Clapclip self-hosted is free with no watermark and no cap, and Clapclip Cloud gives 20 watermarked minutes a month free.`,
   },
   {
     q: 'Does Opus AI have an open source alternative?',
-    a: 'Yes. Clipify is MIT-licensed, self-hostable with Docker, and covers the same core job: AI moment detection, face-tracked 9:16 reframing and word-level burned-in subtitles. It also adds dubbing into 30+ languages and AI UGC video, which Opus AI does not have.',
+    a: 'Yes. Clapclip is MIT-licensed, self-hostable with Docker, and covers the same core job: AI moment detection, face-tracked 9:16 reframing and word-level burned-in subtitles. It also adds dubbing into 30+ languages and AI UGC video, which Opus AI does not have.',
   },
 ])}
 `,
@@ -1514,14 +1514,14 @@ ${faqBlock([
     },
     {
       q: 'Is Opus AI free?',
-      a: `Its free tier is 60 source minutes a month, watermarked and 720p; paid plans start at ${OPUS.entryPrice}. Clipify self-hosted is free with no watermark, and Clipify Cloud gives 20 watermarked minutes a month.`,
+      a: `Its free tier is 60 source minutes a month, watermarked and 720p; paid plans start at ${OPUS.entryPrice}. Clapclip self-hosted is free with no watermark, and Clapclip Cloud gives 20 watermarked minutes a month.`,
     },
   ],
 })
 
 const opusPro = () => ({
   path: '/opus-pro',
-  title: 'Opus Pro Plan: What It Costs and Who Needs It | Clipify',
+  title: 'Opus Pro Plan: What It Costs and Who Needs It | Clapclip',
   description:
     "Opus Pro is Opus Clip's mid tier: 300 source minutes a month, 1080p exports, auto-posting and speaker detection. What it buys, and when it is the wrong plan.",
   h1: 'Opus Pro: the plan, the price, and when it is the wrong buy',
@@ -1535,7 +1535,7 @@ const opusPro = () => ({
   tldr: [
     'Opus Pro is the $29/month tier of Opus Clip: 300 minutes of source video a month, 1080p exports, auto-posting, speaker detection and a brand kit.',
     'The tier it sits above costs $15/month for 150 minutes at 720p, so Pro is roughly double the price for double the minutes and a resolution step. Whether that is worth it depends entirely on how long your sources are, because the credit is charged per minute imported.',
-    `Clipify self-hosted does the same job for $0 with no cap, and the flat hosted plan is $${EDITIONS.cloud.lowPrice}/month for 100 minutes with no watermark.`,
+    `Clapclip self-hosted does the same job for $0 with no cap, and the flat hosted plan is $${EDITIONS.cloud.lowPrice}/month for 100 minutes with no watermark.`,
   ],
   body: `
 <h2>What Opus Pro includes</h2>
@@ -1560,7 +1560,7 @@ uses about 90 minutes and is paying $14/month more than the job needs. The plan
 is priced for volume of input, so the honest question is how many minutes you
 actually import, not how many clips you publish.</p>
 
-<h2>What Clipify costs for the same job</h2>
+<h2>What Clapclip costs for the same job</h2>
 ${pricingParagraph}
 <p>Two differences are worth stating plainly rather than leaving to a table.
 Self-hosted has no meter at all, so a 90-minute interview and a 9-minute one cost
@@ -1583,7 +1583,7 @@ ${faqBlock([
   },
   {
     q: 'Is there a cheaper way to do what Opus Pro does?',
-    a: 'Yes, two: Clipify self-hosted is free under MIT with no cap (you supply your own machine and a free-tier Gemini key), and Clipify Cloud is $12/month for 100 minutes with no watermark, drawing API and MCP usage from the same balance.',
+    a: 'Yes, two: Clapclip self-hosted is free under MIT with no cap (you supply your own machine and a free-tier Gemini key), and Clapclip Cloud is $12/month for 100 minutes with no watermark, drawing API and MCP usage from the same balance.',
   },
 ])}
 `,
@@ -1594,20 +1594,20 @@ ${faqBlock([
     },
     {
       q: 'Is there a cheaper alternative to the Opus Pro plan?',
-      a: 'Clipify self-hosted is free under MIT with no cap; Clipify Cloud is $12/month for 100 minutes with no watermark.',
+      a: 'Clapclip self-hosted is free under MIT with no cap; Clapclip Cloud is $12/month for 100 minutes with no watermark.',
     },
   ],
 })
 
 /* "vizard ai video to text" is its own intent: the searcher wants a transcript,
  * not clips, and lands on clipper pages that never answer it. The honest answer
- * is that both tools produce the transcript — Clipify with word-level timing
+ * is that both tools produce the transcript — Clapclip with word-level timing
  * from faster-whisper, which is what the burned-in captions are cut from. */
 const videoToText = () => {
   const c = COMPETITORS.vizard
   return {
     path: '/vizard-ai-video-to-text',
-    title: 'Vizard AI Video to Text: Transcripts, Compared | Clipify',
+    title: 'Vizard AI Video to Text: Transcripts, Compared | Clapclip',
     description:
       'Vizard AI turns a video into text: a transcript, subtitles and clips. What that costs per minute, and how to get a word-level transcript free by self-hosting.',
     h1: 'Vizard AI video to text: what you get, and what it costs',
@@ -1621,7 +1621,7 @@ const videoToText = () => {
     tldr: [
       `Vizard's "video to text" is a transcript with timestamps, produced from the same pass that finds the clips and burns the captions. It is part of the entry plan, which starts at ${esc(c.entryPrice)}, and the free plan allows 120 upload minutes and 10 exports.`,
       'A transcript is a by-product of the transcription stage every clipper already runs, which is why no tool charges for it separately and why it is not worth choosing a tool over.',
-      'Clipify transcribes with faster-whisper at word level and returns the transcript alongside the clips, subtitles included, free when self-hosted and from $12/month hosted.',
+      'Clapclip transcribes with faster-whisper at word level and returns the transcript alongside the clips, subtitles included, free when self-hosted and from $12/month hosted.',
     ],
     cta: {
       label: 'Transcript included',
@@ -1649,8 +1649,8 @@ subtitles are one of its stronger features. Its entry plan starts at
 ${esc(c.entryPrice)}, and the free plan allows 120 upload minutes and 10 exports.</p>
 <p>${esc(c.gotcha)}</p>
 
-<h2>Doing the same thing with Clipify</h2>
-<p>Clipify transcribes with faster-whisper and keeps a timestamp for every
+<h2>Doing the same thing with Clapclip</h2>
+<p>Clapclip transcribes with faster-whisper and keeps a timestamp for every
 word, not every sentence. Word-level timing is what makes the subtitle file
 land on the right frame and what lets the clip boundaries fall inside a sentence
 instead of at the nearest one. The transcript is returned with the finished job
@@ -1665,7 +1665,7 @@ next to the clips, and the burned-in captions are cut from it.</p>
 <p>If you want to hand-correct captions on a timeline before exporting, Vizard's
 editor is the better fit and it is not close. If you want the text as a
 by-product of clipping at volume, or you need the transcript to stay on your own
-machine, self-hosted Clipify is free and the transcript comes with the job.</p>
+machine, self-hosted Clapclip is free and the transcript comes with the job.</p>
 
 ${faqBlock([
   {
@@ -1674,7 +1674,7 @@ ${faqBlock([
   },
   {
     q: 'How do I get a free transcript from a video?',
-    a: 'Self-host Clipify: transcription runs locally with faster-whisper at word level and the transcript comes back with the finished job, at no cost and with no watermark. The self-hosted edition needs Docker and a Google Gemini API key for the moment scoring, whose free tier covers 1,500 requests a day.',
+    a: 'Self-host Clapclip: transcription runs locally with faster-whisper at word level and the transcript comes back with the finished job, at no cost and with no watermark. The self-hosted edition needs Docker and a Google Gemini API key for the moment scoring, whose free tier covers 1,500 requests a day.',
   },
   {
     q: 'Is word-level timing important in a transcript?',
@@ -1684,7 +1684,7 @@ ${faqBlock([
 
 ${sources([
   `Vizard plan limits checked ${esc(c.checked)} on the vendor's public pricing page.`,
-  `Clipify transcription and subtitle stages in the project source at <a href="${SITE.repo}" rel="noopener">github.com/mutonby/clipify</a>.`,
+  `Clapclip transcription and subtitle stages in the project source at <a href="${SITE.repo}" rel="noopener">github.com/mutonby/clapclip</a>.`,
 ])}
 `,
     faq: [
@@ -1694,7 +1694,7 @@ ${sources([
       },
       {
         q: 'Is there a free way to turn a video into text?',
-        a: 'Yes: self-hosted Clipify transcribes locally with faster-whisper at word level and returns the transcript with the job, free, with no watermark and no cap.',
+        a: 'Yes: self-hosted Clapclip transcribes locally with faster-whisper at word level and returns the transcript with the job, free, with no watermark and no cap.',
       },
     ],
   }
@@ -1709,7 +1709,7 @@ const submagicReview = () => {
   const tierRows = c.tiers.map(([n, d]) => `<tr><td class="os">${esc(n)}</td><td>${esc(d)}</td></tr>`).join('')
   return {
     path: '/submagic-reviews',
-    title: 'Submagic Review: Captions, Price and the Gap | Clipify',
+    title: 'Submagic Review: Captions, Price and the Gap | Clapclip',
     description:
       'An honest Submagic review: best-in-class caption styling, no moment detection, metered per video. What the reviews praise and what covers the gap.',
     h1: 'Submagic review: the captions are the product, and the catch',
@@ -1723,7 +1723,7 @@ const submagicReview = () => {
     tldr: [
       'The recurring theme across public reviews is the same one the product page leads with: the caption styling is the best in this category, and the presets are why people stay.',
       'The second recurring theme is the limitation. Submagic does not find moments for you: you upload a clip you already cut and it styles the text. Going from a 60-minute podcast to finished shorts needs a clipper in front of it, which is two subscriptions.',
-      'Clipify covers both halves: moment detection, 9:16 reframing and word-level captions in one pipeline, free when self-hosted and from $12/month hosted. Its caption designs are plainer than Submagic\'s, and that is the real trade.',
+      'Clapclip covers both halves: moment detection, 9:16 reframing and word-level captions in one pipeline, free when self-hosted and from $12/month hosted. Its caption designs are plainer than Submagic\'s, and that is the real trade.',
     ],
     body: `
 <h2>What Submagic is for</h2>
@@ -1761,7 +1761,7 @@ the cost scales with how much you publish.</p>
 <p>Submagic is the right buy if you already cut your own clips and want the
 captions done well. It is the wrong buy if you are starting from long-form video,
 because you would be paying twice: once for the clipper that finds the moments
-and once for the captions. Clipify does both halves in one pipeline, and where
+and once for the captions. Clapclip does both halves in one pipeline, and where
 it loses is exactly the axis Submagic wins on.</p>
 <div class="note"><span class="label">On star ratings</span><p>We do not publish
 an aggregate score for a competitor. The numbers on the software directories move
@@ -1780,13 +1780,13 @@ ${faqBlock([
   },
   {
     q: 'What is a free alternative to Submagic?',
-    a: 'Clipify, self-hosted: MIT-licensed, free, no watermark and no cap, with moment detection, 9:16 reframing and word-level burned-in captions in the same pipeline. Its caption presets are plainer than Submagic\'s — that is the honest trade.',
+    a: 'Clapclip, self-hosted: MIT-licensed, free, no watermark and no cap, with moment detection, 9:16 reframing and word-level burned-in captions in the same pipeline. Its caption presets are plainer than Submagic\'s — that is the honest trade.',
   },
 ])}
 
 ${sources([
   `Submagic plans and metering checked ${esc(c.checked)} on the vendor's public pricing page.`,
-  `Clipify pipeline stages in the project source at <a href="${SITE.repo}" rel="noopener">github.com/mutonby/clipify</a>.`,
+  `Clapclip pipeline stages in the project source at <a href="${SITE.repo}" rel="noopener">github.com/mutonby/clapclip</a>.`,
 ])}
 `,
     faq: [
@@ -1796,7 +1796,7 @@ ${sources([
       },
       {
         q: 'What is a free alternative to Submagic?',
-        a: 'Clipify self-hosted: free under MIT, no watermark, no cap, with moment detection and captions in one pipeline. Caption presets are plainer than Submagic\'s.',
+        a: 'Clapclip self-hosted: free under MIT, no watermark, no cap, with moment detection and captions in one pipeline. Caption presets are plainer than Submagic\'s.',
       },
     ],
   }
@@ -1871,16 +1871,16 @@ const alternativasIndex = () => {
   return {
     path: '/alternativas',
     lang: 'es',
-    title: 'Alternativas a Opus Clip, Vizard y Submagic | Clipify',
+    title: 'Alternativas a Opus Clip, Vizard y Submagic | Clapclip',
     description:
-      'Comparativas de Clipify frente a Opus Clip, Vizard, Klap y Submagic: precios reales, qué incluye el plan gratuito y en qué gana cada herramienta.',
+      'Comparativas de Clapclip frente a Opus Clip, Vizard, Klap y Submagic: precios reales, qué incluye el plan gratuito y en qué gana cada herramienta.',
     h1: 'Alternativas de código abierto a las herramientas de clipping',
     breadcrumb: [{ name: 'Alternativas' }],
     published: '2026-09-17',
     updated: '2026-09-17',
     tldr: [
-      'Clipify es la única herramienta de esta categoría con código abierto y autoalojable: MIT, se ejecuta con Docker en tu propia máquina y no lleva marca de agua ni límite de uso.',
-      `Los precios de entrada, comprobados el ${esc(OPUS.checked)}: Clipify $0 autoalojado o $12/mes alojado, Submagic ${esc(COMPETITORS.submagic.entryPrice)}, Opus Clip ${esc(OPUS.entryPrice)}, Vizard ${esc(COMPETITORS.vizard.entryPrice)} y Klap ${esc(COMPETITORS.klap.entryPrice)}.`,
+      'Clapclip es la única herramienta de esta categoría con código abierto y autoalojable: MIT, se ejecuta con Docker en tu propia máquina y no lleva marca de agua ni límite de uso.',
+      `Los precios de entrada, comprobados el ${esc(OPUS.checked)}: Clapclip $0 autoalojado o $12/mes alojado, Submagic ${esc(COMPETITORS.submagic.entryPrice)}, Opus Clip ${esc(OPUS.entryPrice)}, Vizard ${esc(COMPETITORS.vizard.entryPrice)} y Klap ${esc(COMPETITORS.klap.entryPrice)}.`,
       'Las herramientas no son equivalentes: Submagic no detecta momentos, Klap no deja ajustar la salida y Vizard espera que edites en su línea de tiempo. Cada comparativa de abajo dice dónde gana de verdad.',
     ],
     cta: {
@@ -1902,7 +1902,7 @@ página, no por popularidad de la herramienta.</p>
 <table>
 <thead><tr><th>Herramienta</th><th>Precio de entrada</th><th>Código abierto</th><th>Autoalojable</th></tr></thead>
 <tbody>
-<tr><td class="os">Clipify</td><td class="os">$0 autoalojado · $12/mes alojado</td><td class="yes">Sí, MIT</td><td class="yes">Sí, Docker</td></tr>
+<tr><td class="os">Clapclip</td><td class="os">$0 autoalojado · $12/mes alojado</td><td class="yes">Sí, MIT</td><td class="yes">Sí, Docker</td></tr>
 <tr><td>Submagic</td><td>${esc(COMPETITORS.submagic.entryPrice)}</td><td>No</td><td>No</td></tr>
 <tr><td>Opus Clip</td><td>${esc(OPUS.entryPrice)}</td><td>No</td><td>No</td></tr>
 <tr><td>Vizard</td><td>${esc(COMPETITORS.vizard.entryPrice)}</td><td>No</td><td>No</td></tr>
@@ -1910,7 +1910,7 @@ página, no por popularidad de la herramienta.</p>
 </tbody>
 </table>
 
-<h2>Qué cuesta Clipify</h2>
+<h2>Qué cuesta Clapclip</h2>
 ${pricingParagraph}
 <p>La diferencia práctica no es solo el precio: en la edición autoalojada no hay
 medidor de ningún tipo, así que un vídeo de 90 minutos cuesta lo mismo que uno de
@@ -1919,11 +1919,11 @@ medidor de ningún tipo, así que un vídeo de 90 minutos cuesta lo mismo que un
 ${faqBlock([
   {
     q: '¿Cuál es la alternativa gratuita a Opus Clip?',
-    a: 'Clipify autoalojado: licencia MIT, se ejecuta con Docker en tu máquina, sin marca de agua y sin límite de uso. Solo necesitas una clave de Google Gemini, cuyo plan gratuito cubre 1.500 peticiones al día. Si prefieres no instalar nada, Clipify Cloud da 20 minutos al mes con marca de agua y planes de pago desde $12/mes.',
+    a: 'Clapclip autoalojado: licencia MIT, se ejecuta con Docker en tu máquina, sin marca de agua y sin límite de uso. Solo necesitas una clave de Google Gemini, cuyo plan gratuito cubre 1.500 peticiones al día. Si prefieres no instalar nada, Clapclip Cloud da 20 minutos al mes con marca de agua y planes de pago desde $12/mes.',
   },
   {
     q: '¿Qué herramienta de clipping tiene código abierto?',
-    a: 'Clipify, con licencia MIT y el código completo en GitHub. Opus Clip, Klap, Vizard y Submagic son productos comerciales de código cerrado que solo funcionan en la nube.',
+    a: 'Clapclip, con licencia MIT y el código completo en GitHub. Opus Clip, Klap, Vizard y Submagic son productos comerciales de código cerrado que solo funcionan en la nube.',
   },
   {
     q: '¿Merece la pena cambiar de herramienta?',
@@ -1934,11 +1934,11 @@ ${faqBlock([
     faq: [
       {
         q: '¿Cuál es la alternativa gratuita a Opus Clip?',
-        a: 'Clipify autoalojado: MIT, Docker, sin marca de agua y sin límite. Hosted: 20 minutos gratis al mes y planes desde $12/mes.',
+        a: 'Clapclip autoalojado: MIT, Docker, sin marca de agua y sin límite. Hosted: 20 minutos gratis al mes y planes desde $12/mes.',
       },
       {
         q: '¿Qué herramienta de clipping es de código abierto?',
-        a: 'Clipify (MIT). Opus Clip, Klap, Vizard y Submagic son de código cerrado y solo en la nube.',
+        a: 'Clapclip (MIT). Opus Clip, Klap, Vizard y Submagic son de código cerrado y solo en la nube.',
       },
     ],
   }
@@ -1955,7 +1955,7 @@ ${faqBlock([
  */
 const gtaClips = () => ({
   path: '/gta-5-clips',
-  title: 'GTA 5 Clips: Turn Stream VODs Into Shorts | Clipify',
+  title: 'GTA 5 Clips: Turn Stream VODs Into Shorts | Clapclip',
   description:
     'Turn GTA 5 and GTA RP stream VODs into shorts: gameplay keeps its full width and the facecam is enlarged, not cropped out. Free self-hosted, no meter.',
   h1: 'Turn GTA 5 and GTA RP streams into vertical clips',
@@ -1963,9 +1963,9 @@ const gtaClips = () => ({
   published: '2026-09-15',
   updated: '2026-09-15',
   tldr: [
-    'A GTA 5 stream is four to eight hours of 16:9 gameplay with a webcam box in one corner. Clipify reads the whole VOD, picks the moments worth posting out of what was said, and reframes each one so the gameplay keeps its full width and the facecam is enlarged underneath it instead of cropped away.',
-    'Length is what makes this expensive everywhere else. Tools in this category bill one credit per minute of source you import, so a single eight-hour stream is 480 minutes: more than the 300 minutes a $29/month Opus Clip Pro plan includes (checked 2026-07-27). Self-hosted Clipify has no meter at all; the hosted edition starts at $12/month.',
-    'Gameplay with no commentary is handled too, and it is where most clippers stop: when a stream has no usable speech Clipify switches by itself to a vision pass where Gemini watches the footage and picks the moments, instead of failing on an empty transcript. The switch is automatic, with one practical ceiling noted below.',
+    'A GTA 5 stream is four to eight hours of 16:9 gameplay with a webcam box in one corner. Clapclip reads the whole VOD, picks the moments worth posting out of what was said, and reframes each one so the gameplay keeps its full width and the facecam is enlarged underneath it instead of cropped away.',
+    'Length is what makes this expensive everywhere else. Tools in this category bill one credit per minute of source you import, so a single eight-hour stream is 480 minutes: more than the 300 minutes a $29/month Opus Clip Pro plan includes (checked 2026-07-27). Self-hosted Clapclip has no meter at all; the hosted edition starts at $12/month.',
+    'Gameplay with no commentary is handled too, and it is where most clippers stop: when a stream has no usable speech Clapclip switches by itself to a vision pass where Gemini watches the footage and picks the moments, instead of failing on an empty transcript. The switch is automatic, with one practical ceiling noted below.',
   ],
   body: `
 <h2>Why GTA clips break a normal auto-clipper</h2>
@@ -1981,7 +1981,7 @@ own answer below.</p>
 <h2>How the webcam inset layout works</h2>
 <p>The OBS layout almost every GTA streamer uses, gameplay full screen with the
 camera composited into a corner, is a single video file with two things in it.
-Clipify detects that geometrically rather than asking a model: it looks for a
+Clapclip detects that geometrically rather than asking a model: it looks for a
 subject that is <strong>small</strong>, <strong>off centre horizontally</strong>
 and <strong>still between samples</strong>. All three filters are needed. A
 talking head sitting high in frame is still centred, so size alone is not
@@ -2002,7 +2002,7 @@ inside it.</p></div>
 <h2>When the gameplay itself is the point</h2>
 <p>Not every moment has a face worth showing. A chase, a heist finale or a
 five-car pileup means what it means across the whole width of the frame, and
-cropping to a vertical column deletes the half that explains it. Clipify
+cropping to a vertical column deletes the half that explains it. Clapclip
 measures how wide the meaningful content is and routes on that: content spanning
 more than 85% of the frame renders as WIDE, which keeps the full width intact
 over a blurred backdrop rather than side-cropping it. Content that leaves room
@@ -2039,7 +2039,7 @@ ${pricingParagraph}
 transcript: roleplay dialogue, heist banter and party voice chat are exactly
 what it is good at, and reading words rather than frames is why an eight-hour
 source costs about the same to analyse as an eight-minute one. A silent grind
-has no transcript to read, so Clipify does not use one.</p>
+has no transcript to read, so Clapclip does not use one.</p>
 <p>It switches paths on its own, and it does not need to be told to. Footage
 with no audio track at all, and footage whose transcript comes back under 8
 words or under 5 words per minute (music-only streams, a mic that was muted the
@@ -2074,7 +2074,7 @@ fine, and the platforms strike it.</p>
 ${faqBlock([
   {
     q: 'How do I make GTA 5 clips for TikTok?',
-    a: 'Paste the stream VOD link into Clipify with the vertical layout set to auto. It transcribes the whole recording, has Gemini pick the 3 to 15 strongest 15 to 60 second moments out of what was said, reframes each one to 9:16 keeping the gameplay full width with your facecam enlarged below it, and burns in word-level subtitles. Clips download or post straight to TikTok, Reels and Shorts.',
+    a: 'Paste the stream VOD link into Clapclip with the vertical layout set to auto. It transcribes the whole recording, has Gemini pick the 3 to 15 strongest 15 to 60 second moments out of what was said, reframes each one to 9:16 keeping the gameplay full width with your facecam enlarged below it, and burns in word-level subtitles. Clips download or post straight to TikTok, Reels and Shorts.',
   },
   {
     q: 'Can it handle a whole eight-hour GTA RP stream?',
@@ -2090,7 +2090,7 @@ ${faqBlock([
   },
   {
     q: 'Is it free for streamers?',
-    a: 'Self-hosted Clipify is free and open source under MIT with no per-minute meter, which is the edition that makes sense when your sources are measured in hours: run it with Docker and bring your own Gemini API key. Clipify Cloud covers 20 minutes a month free with a watermark, and paid hosted plans start at $12/month.',
+    a: 'Self-hosted Clapclip is free and open source under MIT with no per-minute meter, which is the edition that makes sense when your sources are measured in hours: run it with Docker and bring your own Gemini API key. Clapclip Cloud covers 20 minutes a month free with a watermark, and paid hosted plans start at $12/month.',
   },
 ])}
 
@@ -2098,13 +2098,13 @@ ${sources([
   'Opus Clip tier minutes and prices checked 2026-07-27 on their public pricing page.',
   'Inset detection and layout accuracy figures are our own measurements on a 48-video internal corpus, 2026-08.',
   'Silent-footage thresholds (8 words, 5 words per minute) and the vision fallback are in <code>main.py</code>; Gemini video token rates from Google\'s published pricing.',
-  `Inset, WIDE and screencast layout implementations in the project source at <a href="${SITE.repo}" rel="noopener">github.com/mutonby/clipify</a>.`,
+  `Inset, WIDE and screencast layout implementations in the project source at <a href="${SITE.repo}" rel="noopener">github.com/mutonby/clapclip</a>.`,
 ])}
 `,
   faq: [
     {
       q: 'How do I make GTA 5 clips for TikTok?',
-      a: 'Paste the stream VOD into Clipify with the vertical layout on auto: it transcribes the recording, picks the 3 to 15 strongest 15 to 60 second moments, reframes each to 9:16 keeping the gameplay full width with the facecam enlarged below, and burns in subtitles.',
+      a: 'Paste the stream VOD into Clapclip with the vertical layout on auto: it transcribes the recording, picks the 3 to 15 strongest 15 to 60 second moments, reframes each to 9:16 keeping the gameplay full width with the facecam enlarged below, and burns in subtitles.',
     },
     {
       q: 'Can it handle a whole eight-hour GTA RP stream?',
@@ -2116,7 +2116,7 @@ ${sources([
     },
     {
       q: 'Does it work on gameplay with no commentary?',
-      a: 'Yes. When a video has no audio track, or under 8 words of speech, Clipify switches automatically to a vision pass where Gemini watches the footage and picks the same 3 to 15 moments. Those clips have no captions, because there is no speech to caption.',
+      a: 'Yes. When a video has no audio track, or under 8 words of speech, Clapclip switches automatically to a vision pass where Gemini watches the footage and picks the same 3 to 15 moments. Those clips have no captions, because there is no speech to caption.',
     },
   ],
   /* HowTo is emitted alongside the Article because the primary query here is a
@@ -2131,7 +2131,7 @@ ${sources([
         'Turn a multi-hour GTA 5 or GTA RP stream VOD into vertical 9:16 clips for TikTok, YouTube Shorts and Instagram Reels, keeping the gameplay full width and the facecam visible.',
       totalTime: 'PT15M',
       supply: [{ '@type': 'HowToSupply', name: 'A GTA 5 stream VOD (link or local file) you have the rights to' }],
-      tool: [{ '@type': 'HowToTool', name: 'Clipify (self-hosted with Docker, or Clipify Cloud)' }],
+      tool: [{ '@type': 'HowToTool', name: 'Clapclip (self-hosted with Docker, or Clapclip Cloud)' }],
       step: [
         {
           '@type': 'HowToStep',
@@ -2210,7 +2210,7 @@ export function relatedFor(page, all) {
     '/free-ai-clip-generator-no-watermark': 'Why free tools watermark, and the structural exception.',
     '/open-source-video-clipper': 'Self-hosting with Docker, and the MIT licence carve-out.',
     '/open-source-ai-video-generator': 'Text-to-video or clips from your footage: which you want.',
-    '/how-clipify-works': 'The full pipeline, stage by stage.',
+    '/how-clapclip-works': 'The full pipeline, stage by stage.',
     '/gta-5-clips': 'Stream VODs, webcam inset kept, no per-minute meter.',
     '/podcast-to-shorts': 'Two-speaker episodes without cropping anyone out.',
     '/youtube-to-shorts-converter': 'Paste a link, get 9:16 clips with subtitles.',

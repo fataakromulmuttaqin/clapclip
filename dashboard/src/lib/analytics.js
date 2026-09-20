@@ -2,7 +2,7 @@ import { allows } from './consent';
 
 // Lightweight custom-event helper (OpenPanel).
 //
-// The hosted clipify.app build loads OpenPanel (see index.html), which
+// The hosted clapclip.app build loads OpenPanel (see index.html), which
 // exposes `window.op`. Self-hosted builds, ad-blockers or offline dev simply
 // won't have it — every call here is a safe no-op in that case, so analytics
 // can never break the app or leak into the open-source experience.

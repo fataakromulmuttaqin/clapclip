@@ -3,12 +3,12 @@ import { Plug, Copy, Check } from 'lucide-react';
 import { getApiUrl } from '../config';
 
 // "Connect an agent": the one place that tells a person how to drive
-// Clipify from Claude, ChatGPT, Cursor or n8n. Cloud accounts connect by
+// Clapclip from Claude, ChatGPT, Cursor or n8n. Cloud accounts connect by
 // URL (claude.ai and ChatGPT run the OAuth flow themselves; CLI clients take
 // an API key); a self-hosted install has no auth, so every snippet is the
 // local URL and nothing else.
 
-const CLOUD_MCP_URL = 'https://mcp.clipify.app/mcp';
+const CLOUD_MCP_URL = 'https://mcp.clapclip.app/mcp';
 
 // The self-hosted dashboard proxies /api and /videos to the backend but not
 // /mcp (neither the Vite dev proxy nor nginx.conf), so an MCP client must
@@ -33,7 +33,7 @@ function buildClients({ cloud, url }) {
       steps: [
         'Open claude.ai → Settings → Connectors → Add custom connector.',
         `Paste this URL and save: ${url}`,
-        'Click Connect: you will land on Clipify to approve the access, then the 8 tools appear in every chat.',
+        'Click Connect: you will land on Clapclip to approve the access, then the 8 tools appear in every chat.',
       ],
       snippet: url,
     },
@@ -41,24 +41,24 @@ function buildClients({ cloud, url }) {
       id: 'chatgpt', label: 'ChatGPT', kind: 'steps',
       steps: [
         'Open ChatGPT → Settings → Connectors → Create (developer mode).',
-        `Name it Clipify, paste this MCP server URL, choose OAuth: ${url}`,
-        'Approve the access on Clipify when asked. Done: ask ChatGPT to clip a video.',
+        `Name it Clapclip, paste this MCP server URL, choose OAuth: ${url}`,
+        'Approve the access on Clapclip when asked. Done: ask ChatGPT to clip a video.',
       ],
       snippet: url,
     },
     {
       id: 'claude-code', label: 'Claude Code', kind: 'code', lang: 'bash',
-      snippet: `claude mcp add --transport http clipify ${url}${header}`,
+      snippet: `claude mcp add --transport http clapclip ${url}${header}`,
       note: cloud ? 'Create a key below and paste it in place of osk_YOUR_KEY.' : 'No key needed on a self-hosted install.',
     },
     {
       id: 'claude-desktop', label: 'Claude Desktop', kind: 'code', lang: 'json',
-      snippet: `{\n  "mcpServers": {\n    "clipify": {\n      "command": "npx",\n      "args": ${desktopArgs}\n    }\n  }\n}`,
+      snippet: `{\n  "mcpServers": {\n    "clapclip": {\n      "command": "npx",\n      "args": ${desktopArgs}\n    }\n  }\n}`,
       note: 'Settings → Developer → Edit config (claude_desktop_config.json), then restart Claude.',
     },
     {
       id: 'cursor', label: 'Cursor', kind: 'code', lang: 'json',
-      snippet: `{\n  "mcpServers": {\n    "clipify": {\n      "url": "${url}"${cursorHeaders}\n    }\n  }\n}`,
+      snippet: `{\n  "mcpServers": {\n    "clapclip": {\n      "url": "${url}"${cursorHeaders}\n    }\n  }\n}`,
       note: 'Settings → MCP → Add new global MCP server (.cursor/mcp.json).',
     },
     {

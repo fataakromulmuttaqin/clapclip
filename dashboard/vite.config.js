@@ -18,8 +18,8 @@ export default defineConfig({
     allowedHosts: [
       'localhost',
       '127.0.0.1',
-      'clipify.app',
-      'www.clipify.app'
+      'clapclip.app',
+      'www.clapclip.app'
     ],
     proxy: {
       '/api': { target: backend, changeOrigin: true },

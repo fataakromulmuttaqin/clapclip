@@ -9,7 +9,7 @@ export interface CaptionBlock {
 
 /**
  * Groups word-level captions into display blocks.
- * Same logic as Clipify' generate_srt: max chars per block, max duration per block.
+ * Same logic as Clapclip' generate_srt: max chars per block, max duration per block.
  */
 export function groupCaptionsIntoBlocks(
   captions: CaptionWord[],

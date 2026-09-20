@@ -36,7 +36,7 @@ const CATEGORY_COPY = [
   },
 ];
 
-export default function CookieBanner() {
+export default function ConsentNotice() {
   const [open, setOpen] = useState(() => !hasDecided());
   const [details, setDetails] = useState(false);
   const [draft, setDraft] = useState(() => getConsent());

@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Clipify Light Theme — bright, eye-friendly colors
+        // Clapclip Light Theme — bright, eye-friendly colors
         paper: "oklch(98% 0.005 100 / <alpha-value>)",
         paper2: "oklch(95% 0.008 100 / <alpha-value>)",
         paper3: "oklch(92% 0.01 100 / <alpha-value>)",

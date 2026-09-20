@@ -80,3 +80,6 @@ favicon.png
 
 # ====== DOCUMENTATION ======
 docs/
+
+# Node
+node_modules/

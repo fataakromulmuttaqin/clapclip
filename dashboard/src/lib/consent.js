@@ -20,7 +20,7 @@
 //                decision someone has to make here, in the open, rather than a
 //                <script> tag someone drops into index.html.
 
-const STORAGE_KEY = 'clipify_consent';
+const STORAGE_KEY = 'clapclip_consent';
 const VERSION = 1;
 
 export const CATEGORIES = ['necessary', 'analytics', 'marketing'];
@@ -147,7 +147,7 @@ export function applyConsent() {
 
 // Reopening the banner from anywhere (the footer link) without threading props
 // through the whole tree.
-const OPEN_EVENT = 'clipify:consent-open';
+const OPEN_EVENT = 'clapclip:consent-open';
 export const openConsentManager = () => {
   try { window.dispatchEvent(new CustomEvent(OPEN_EVENT)); } catch (_) { /* ignore */ }
 };

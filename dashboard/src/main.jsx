@@ -8,7 +8,7 @@ import PricingPage from './components/PricingPage'
 import AccountPage from './components/AccountPage'
 import LoginModal from './components/LoginModal'
 import { applyConsent } from './lib/consent'
-import CookieBanner from './components/CookieBanner'
+import ConsentNotice from './components/ConsentNotice'
 
 const App = lazy(() => import('./App.jsx'))
 const Legal = lazy(() => import('./Legal.jsx'))
@@ -18,7 +18,7 @@ function PageShell({ title, children }) {
   return (
     <div className="min-h-screen bg-paper text-ink2">
       <header className="h-14 sm:h-16 border-b border-rule bg-paper flex items-center justify-between gap-3 px-4 sm:px-6 sticky top-0 z-20">
-        <a href="#app" className="font-display lowercase text-lg text-ink truncate">Clipify</a>
+        <a href="#app" className="font-display lowercase text-lg text-ink truncate">Clapclip</a>
         <a href="#app" className="text-sm lowercase text-muted hover:text-ink transition-colors shrink-0">← <span className="hidden sm:inline">Back to app</span><span className="sm:hidden">back</span></a>
       </header>
       <main className="p-4 sm:p-6 md:p-8 pb-[max(2rem,env(safe-area-inset-bottom))]">
@@ -49,7 +49,7 @@ function AccountView() {
 
 // Landing spot after an account is erased. Its own view because the session is
 // gone: sending the user to #/account would bounce them to pricing with no
-// explanation, and "clipify_skip_landing" would send them into the app.
+// explanation, and "clapclip_skip_landing" would send them into the app.
 function DeletedView() {
   return (
     <div className="min-h-screen bg-paper text-ink2 flex items-center justify-center p-6">
@@ -64,7 +64,7 @@ function DeletedView() {
           You're welcome back any time — signing up again with the same address
           starts a brand-new, empty account.
         </p>
-        <a href="#landing" className="btn-ghost px-4 py-2 inline-flex">Back to clipify.app</a>
+        <a href="#landing" className="btn-ghost px-4 py-2 inline-flex">Back to clapclip.app</a>
       </div>
     </div>
   );
@@ -81,7 +81,7 @@ function Root() {
     if (hash === '#legal') return 'legal';
     // #landing = explicit landing view (app logo); section anchors keep the landing mounted
     if (['#landing', '#features', '#how-it-works', '#pricing', '#comparison', '#faq'].includes(hash)) return 'landing';
-    if (hash === '#app' || hash.startsWith('#app?') || localStorage.getItem('clipify_skip_landing') === '1') return 'app';
+    if (hash === '#app' || hash.startsWith('#app?') || localStorage.getItem('clapclip_skip_landing') === '1') return 'app';
     return 'landing';
   };
 
@@ -94,7 +94,7 @@ function Root() {
   }, []);
 
   const handleLaunchApp = () => {
-    localStorage.setItem('clipify_skip_landing', '1');
+    localStorage.setItem('clapclip_skip_landing', '1');
     window.location.hash = '#app';
     setView('app');
   };
@@ -125,7 +125,7 @@ createRoot(document.getElementById('root')).render(
       <Suspense fallback={<div className="min-h-screen bg-paper flex items-center justify-center text-muted text-sm lowercase">loading…</div>}>
         <Root />
       </Suspense>
-      <CookieBanner />
+      <ConsentNotice />
     </AuthProvider>
   </StrictMode>,
 )

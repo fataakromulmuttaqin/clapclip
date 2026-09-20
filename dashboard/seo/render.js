@@ -193,7 +193,7 @@ const buildGraph = (page) => {
 
 const NAV = `
 <header class="site"><div class="wrap">
-  <a class="brand" href="${SITE.url}/"><img src="/logo-clipify.png" alt="Clipify logo" width="26" height="26">Clipify</a>
+  <a class="brand" href="${SITE.url}/"><img src="/logo-clapclip.png" alt="Clapclip logo" width="26" height="26">Clapclip</a>
   <nav class="nav">
     <a href="/free-ai-clip-generator">Clip generator</a>
     <a href="/alternatives">Alternatives</a>
@@ -206,7 +206,7 @@ const NAV = `
 const footer = (_related) => `
 <footer class="site"><div class="wrap">
   <div class="row">
-    <a href="${SITE.url}/">Clipify</a>
+    <a href="${SITE.url}/">Clapclip</a>
     <a href="${SITE.repo}" rel="noopener">Source on GitHub</a>
     <a href="/free-ai-clip-generator">Free AI clip generator</a>
     <a href="/free-ai-clip-generator-no-watermark">No-watermark clip generator</a>
@@ -215,7 +215,7 @@ const footer = (_related) => `
     <a href="/podcast-to-shorts">Podcast to shorts</a>
     <a href="/youtube-to-shorts-converter">YouTube to Shorts converter</a>
     <a href="/gta-5-clips">GTA 5 clips</a>
-    <a href="/how-clipify-works">How it works</a>
+    <a href="/how-clapclip-works">How it works</a>
     <a href="/alternatives">Alternatives compared</a>
     <a href="/alternativas">Alternativas (ES)</a>
     <a href="/mcp">MCP server and API</a>
@@ -229,7 +229,7 @@ const footer = (_related) => `
     <a href="/vizard-ai-video-to-text">Vizard AI video to text</a>
     <a href="/submagic-reviews">Submagic review</a>
   </div>
-  <p>Clipify self-hosted is free and open source under MIT. Clipify Cloud
+  <p>Clapclip self-hosted is free and open source under MIT. Clapclip Cloud
   is the hosted service: 20 free minutes a month, paid plans from $12/month.
   Last updated ${esc(SITE.updated)}.</p>
 </div></footer>`
@@ -261,7 +261,7 @@ const ANALYTICS = `
       var clientId = "%VITE_OPENPANEL_CLIENT_ID%";
       var unset = function (v) { return !v || v.charAt(0) === "%"; };
       if (unset(apiUrl) || unset(clientId)) return false;
-      var ANALYTICS_HOSTS = /^(www\\.)?clipify\\.app$/;
+      var ANALYTICS_HOSTS = /^(www\\.)?clapclip\\.app$/;
       if (!ANALYTICS_HOSTS.test(location.hostname)) return false;
       started = true;
       window.op("init", {
@@ -348,7 +348,7 @@ export function renderPage(page, related = [], { cta = true } = {}) {
 ${page.noindex ? '' : `<link rel="canonical" href="${canonical}">\n`}<meta name="robots" content="${
     page.noindex ? 'noindex,follow' : 'index,follow,max-image-preview:large,max-snippet:-1'
   }">
-<link rel="icon" type="image/png" href="/logo-clipify.png">
+<link rel="icon" type="image/png" href="/logo-clapclip.png">
 <link rel="stylesheet" href="/fonts.css">
 ${ANALYTICS}
 <meta property="og:type" content="article">
@@ -376,7 +376,7 @@ ${
   page.noindex
     ? ''
     : `<div class="byline">
-  By the Clipify team<span class="sep">·</span>
+  By the Clapclip team<span class="sep">·</span>
   Published <time datetime="${esc(page.published || SITE.published)}">${esc(page.published || SITE.published)}</time><span class="sep">·</span>
   Updated <time datetime="${esc(page.updated || SITE.updated)}">${esc(page.updated || SITE.updated)}</time>
 </div>`

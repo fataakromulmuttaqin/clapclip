@@ -30,7 +30,7 @@ import { track } from './lib/analytics';
 
 // Enhanced "Encryption" using XOR + Base64 with a Salt
 // This is better than plain Base64 but still client-side.
-const SECRET_KEY = import.meta.env.VITE_ENCRYPTION_KEY || "Clipify-Static-Salt-Change-Me";
+const SECRET_KEY = import.meta.env.VITE_ENCRYPTION_KEY || "Clapclip-Static-Salt-Change-Me";
 const ENCRYPTION_PREFIX = "ENC:";
 
 const encrypt = (text) => {
@@ -236,7 +236,7 @@ const UserProfileSelector = ({ profiles, selectedUserId, onSelect, onConnect }) 
   );
 };
 
-const SESSION_KEY = 'clipify_session';
+const SESSION_KEY = 'clapclip_session';
 // Matches the self-host JOB_RETENTION_SECONDS default. A restore whose job was
 // already purged server-side fails gracefully and clears the saved session.
 const SESSION_MAX_AGE = 86400000; // 24 hours
@@ -552,7 +552,7 @@ function App() {
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `clipify_clips_${(jobId || '').slice(0, 8)}.zip`;
+      a.download = `clapclip_clips_${(jobId || '').slice(0, 8)}.zip`;
       document.body.appendChild(a);
       a.click();
       a.remove();
@@ -1104,7 +1104,7 @@ function App() {
         <span className={collapsed ? 'hidden lg:block truncate' : 'truncate'}>landing page</span>
       </a>
       <a
-        href="https://github.com/mutonby/clipify"
+        href="https://github.com/mutonby/clapclip"
         target="_blank"
         rel="noopener noreferrer"
         className="flex items-center gap-2 px-3 py-2 text-xs lowercase text-muted hover:text-ink2 transition-colors"
@@ -1122,11 +1122,11 @@ function App() {
         </a>
       )}
       <a
-        href="mailto:info@clipify.app"
+        href="mailto:info@clapclip.app"
         className="flex items-center gap-2 px-3 py-2 text-xs lowercase text-muted hover:text-ink2 transition-colors"
       >
         <Mail size={14} className="shrink-0" />
-        <span className={collapsed ? 'hidden lg:block truncate' : 'truncate'}>info@clipify.app</span>
+        <span className={collapsed ? 'hidden lg:block truncate' : 'truncate'}>info@clapclip.app</span>
       </a>
     </>
   );
@@ -1137,9 +1137,9 @@ function App() {
     <div className="hidden md:flex w-20 lg:w-64 bg-paper2 border-r border-rule flex-col h-full shrink-0 transition-all duration-300">
       <a href="#landing" className="p-6 flex items-center gap-3" title="go to landing page">
         <div className="w-8 h-8 bg-paper3 rounded-input flex items-center justify-center shrink-0 overflow-hidden border border-rule">
-          <img src="/logo-clipify.png" alt="Logo" className="w-full h-full object-cover" />
+          <img src="/logo-clapclip.png" alt="Logo" className="w-full h-full object-cover" />
         </div>
-        <span className="font-display lowercase text-lg text-ink hidden lg:block">clipify</span>
+        <span className="font-display lowercase text-lg text-ink hidden lg:block">clapclip</span>
       </a>
 
       <nav className="flex-1 px-4 py-4 space-y-1">
@@ -1192,9 +1192,9 @@ function App() {
         <div className="flex items-center justify-between px-5 h-14 border-b border-rule shrink-0">
           <a href="#landing" className="flex items-center gap-2.5" onClick={() => setNavOpen(false)}>
             <div className="w-7 h-7 bg-paper3 rounded-input overflow-hidden border border-rule shrink-0">
-              <img src="/logo-clipify.png" alt="" className="w-full h-full object-cover" />
+              <img src="/logo-clapclip.png" alt="" className="w-full h-full object-cover" />
             </div>
-            <span className="font-display lowercase text-lg text-ink">clipify</span>
+            <span className="font-display lowercase text-lg text-ink">clapclip</span>
           </a>
           <button
             onClick={() => setNavOpen(false)}
@@ -1301,7 +1301,7 @@ function App() {
               <Menu size={20} />
             </button>
             <span data-tutorial="nav-clips" className="md:hidden font-display lowercase text-base text-ink truncate">
-              {activeNav?.label || 'clipify'}
+              {activeNav?.label || 'clapclip'}
             </span>
             {status !== 'idle' && (
               <button
@@ -1379,10 +1379,10 @@ function App() {
                 <span className="font-medium text-ink">Required API keys missing.</span>{' '}
                 <span className="text-muted">
                   {!geminiOk && !uploadPostKey
-                    ? 'Set your Gemini and Upload-Post API keys to use Clipify.'
+                    ? 'Set your Gemini and Upload-Post API keys to use Clapclip.'
                     : !geminiOk
-                      ? 'Set your Gemini API key to use Clipify.'
-                      : 'Set your Upload-Post API key to use Clipify.'}
+                      ? 'Set your Gemini API key to use Clapclip.'
+                      : 'Set your Upload-Post API key to use Clapclip.'}
                 </span>
               </div>
             </div>
@@ -2154,7 +2154,7 @@ function App() {
       >
         <div className="space-y-4">
           <p className="text-sm text-muted">
-            Clipify needs both a <strong className="text-ink2">Gemini</strong> API key and an <strong className="text-ink2">Upload-Post</strong> API key. Both have free tiers.
+            Clapclip needs both a <strong className="text-ink2">Gemini</strong> API key and an <strong className="text-ink2">Upload-Post</strong> API key. Both have free tiers.
           </p>
 
           {/* Gemini block */}
