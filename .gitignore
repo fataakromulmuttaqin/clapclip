@@ -1,0 +1,82 @@
+# Video files (will be mounted via volume)
+*.mp4
+*.webm
+*.mov
+*.mkv
+*.avi
+*.flv
+*.m4v
+*.gif
+demo-*.mp4
+demo-*.gif
+demo-*.webm
+churchil_*
+demo_*
+videos/
+
+# YOLO model
+*.pt
+
+# Python virtual environment
+.venv/
+__pycache__/
+*.pyc
+
+# Temporary files / runtime dirs
+temp_*
+uploads/
+downloads/
+videos/
+output/
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/
+
+# Secrets
+.env
+
+# Generated metadata
+*_metadata.json
+
+# Cache dirs
+.cache/
+.config/
+# Multi-agent Skills
+.agents/
+.agent/
+.claude/
+# skills/ holds third-party installs (symlinks); our own published skill is versioned
+skills/*
+!skills/openshorts/
+skills-lock.json
+
+
+# Cloud env example kept local only (avoid leaking infra hints)
+.env.cloud.example
+.worktrees
+
+# Instrucciones locales con datos de infra (repo público)
+CLAUDE.local.md
+
+# ====== CUSTOM INSTALLERS (private) ======
+*.exe
+*.msi
+*.deb
+*.rpm
+installer.bat
+installer.ps1
+start.bat
+start.ps1
+COMPILE_GUIDE.txt
+
+# ====== REBRAND INTERMEDIATE FILES ======
+replacement*
+rebranding*
+favicon-16.png
+favicon-32.png
+favicon.png
+
+# ====== DOCUMENTATION ======
+docs/
